@@ -30,7 +30,7 @@ export function CardParallaxTilt({
     <motion.div
       ref={ref as any}
       {...tiltProps}
-      className={cn("cursor-pointer", className)}
+      className={cn("cursor-pointer max-[767px]:cursor-default", className)}
       {...props}
     >
       {children}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FileDownIcon } from "lucide-react";
 
+import { MobileNav } from "@/components/site/mobile-nav";
 import { SiteNav } from "@/components/site/site-nav";
 import { ThemeToggle } from "@/components/site/theme-toggle";
 import { Separator } from "@/components/ui/separator";
@@ -17,34 +18,30 @@ const NAV_ITEMS = [
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 bg-background/90 pt-2 backdrop-blur-md supports-backdrop-filter:bg-background/75">
-      <div className="mx-auto px-4 md:max-w-3xl">
+      <div className="relative mx-auto px-4 md:max-w-3xl">
         <div className="screen-line-top screen-line-bottom flex h-12 items-center justify-between gap-2 border-x border-line px-2">
           <Link href="/" aria-label={SITE.name} className="flex shrink-0 items-center px-1">
             <Wordmark />
           </Link>
 
-          <nav
-            aria-label="Primary"
-            className="min-w-0 flex-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] sm:flex-none [&::-webkit-scrollbar]:hidden"
-          >
+          <nav aria-label="Primary" className="hidden flex-1 md:block">
             <SiteNav items={NAV_ITEMS} />
           </nav>
 
-          <div className="flex shrink-0 items-center">
+          <div className="hidden shrink-0 items-center md:flex">
             <a
               href={RESUME.href}
               download={RESUME.filename}
-              className="hidden items-center gap-1 px-2 font-mono text-sm font-medium text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+              className="inline-flex items-center gap-1 px-2 font-mono text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               <FileDownIcon className="size-3.5" />
               {RESUME.label}
             </a>
-            <Separator
-              orientation="vertical"
-              className="mx-2 hidden data-vertical:h-4 sm:block"
-            />
+            <Separator orientation="vertical" className="mx-2 data-vertical:h-4" />
             <ThemeToggle />
           </div>
+
+          <MobileNav items={NAV_ITEMS} />
         </div>
       </div>
     </header>

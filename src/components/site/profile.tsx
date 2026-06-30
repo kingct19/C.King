@@ -39,10 +39,10 @@ export function Profile() {
       </div>
 
       <div className="screen-line-top px-4 pb-4">
-        <div className="flex h-12 items-center gap-2 sm:h-9">
+        <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 sm:h-9">
           <TextBlurIn
             as="h1"
-            className="text-2xl font-semibold tracking-tight whitespace-nowrap sm:text-3xl"
+            className="text-2xl font-semibold tracking-tight text-balance sm:text-3xl"
             duration={0.6}
             staggerDelay={0.06}
             aria-label={SITE.name}

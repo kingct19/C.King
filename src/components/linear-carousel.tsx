@@ -162,14 +162,14 @@ export const Carousel = ({
             value={{ onCardClose: handleCardClose, currentIndex }}
         >
             <div
-                className="relative w-full mx-auto px-4 md:px-8"
+                className="relative w-full mx-auto px-2 sm:px-4 md:px-8"
                 onTouchStart={() => setIsHovered(true)}
                 onTouchEnd={() => setIsHovered(false)}
             >
                 <div
                     className={cn(
-                        "flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20 cursor-grab active:cursor-grabbing",
-                        isDragging && "cursor-grabbing scroll-auto"
+                        "flex w-full overflow-x-auto overscroll-x-contain scroll-smooth py-6 [scrollbar-width:none] sm:py-10 md:py-20 [@media(hover:hover)]:cursor-grab [@media(hover:hover)]:active:cursor-grabbing",
+                        isDragging && "[@media(hover:hover)]:cursor-grabbing [@media(hover:hover)]:scroll-auto"
                     )}
                     ref={carouselRef}
                     onScroll={checkScrollability}
@@ -249,10 +249,10 @@ export const Card = ({
     return (
         <motion.button
             layoutId={layout ? `card-${card.title}-${index}` : undefined}
-            className="relative z-10 flex h-60 w-56 flex-col items-start justify-end overflow-hidden rounded-3xl bg-gray-100 md:h-96 md:w-80 dark:bg-neutral-900"
+            className="relative z-10 flex h-52 w-48 flex-col items-start justify-end overflow-hidden rounded-3xl bg-gray-100 sm:h-60 sm:w-56 md:h-96 md:w-80 dark:bg-neutral-900"
         >
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-2/3 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-            <div className="relative z-40 p-8 w-full">
+            <div className="relative z-40 w-full p-4 sm:p-6 md:p-8">
                 {card.category && (
                     <motion.p
                         layoutId={layout ? `category-${card.category}-${index}` : undefined}
@@ -263,7 +263,7 @@ export const Card = ({
                 )}
                 <motion.p
                     layoutId={layout ? `title-${card.title}-${index}` : undefined}
-                    className="mt-2 max-w-xs text-left font-mono text-xl font-semibold [text-wrap:balance] text-white md:text-3xl"
+                    className="mt-2 max-w-xs text-left font-mono text-lg font-semibold [text-wrap:balance] text-white sm:text-xl md:text-3xl"
                 >
                     {card.title}
                 </motion.p>

@@ -7,6 +7,7 @@ export interface UseParallaxTiltOptions {
   shadowIntensity?: number;
   stiffness?: number;
   damping?: number;
+  disabled?: boolean;
 }
 
 export function useParallaxTilt(options: UseParallaxTiltOptions = {}) {
@@ -16,9 +17,22 @@ export function useParallaxTilt(options: UseParallaxTiltOptions = {}) {
     shadowIntensity = 0.3,
     stiffness = 300,
     damping = 30,
+    disabled = false,
   } = options;
 
   const ref = React.useRef<HTMLElement>(null);
+  const [isCoarsePointer, setIsCoarsePointer] = React.useState(false);
+
+  React.useEffect(() => {
+    const media = window.matchMedia("(hover: none), (pointer: coarse)");
+    const update = () => setIsCoarsePointer(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
+  const isDisabled = disabled || isCoarsePointer;
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -30,9 +44,14 @@ export function useParallaxTilt(options: UseParallaxTiltOptions = {}) {
 
   const shadowX = useTransform(mouseXSpring, [-0.5, 0.5], [-20, 20]);
   const shadowY = useTransform(mouseYSpring, [-0.5, 0.5], [-20, 20]);
+  const boxShadow = useTransform(
+    [shadowX, shadowY],
+    ([shadowOffsetX, shadowOffsetY]) =>
+      `${shadowOffsetX}px ${shadowOffsetY}px 30px rgba(0, 0, 0, ${shadowIntensity})`,
+  );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!ref.current) return;
+    if (isDisabled || !ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
@@ -50,20 +69,19 @@ export function useParallaxTilt(options: UseParallaxTiltOptions = {}) {
     y.set(0);
   };
 
-  const tiltProps = {
-    style: {
-      rotateX,
-      rotateY,
-      transformStyle: "preserve-3d" as const,
-      boxShadow: useTransform(
-        [shadowX, shadowY],
-        ([x, y]) => `${x}px ${y}px 30px rgba(0, 0, 0, ${shadowIntensity})`,
-      ),
-    },
-    onMouseMove: handleMouseMove,
-    onMouseLeave: handleMouseLeave,
-    transition: { duration },
-  };
+  const tiltProps = isDisabled
+    ? {}
+    : {
+        style: {
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d" as const,
+          boxShadow,
+        },
+        onMouseMove: handleMouseMove,
+        onMouseLeave: handleMouseLeave,
+        transition: { duration },
+      };
 
   return { tiltProps, ref };
 }

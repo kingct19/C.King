@@ -96,7 +96,7 @@ export function ContactSection() {
           </SpotlightCard>
         </div>
 
-        <p className="font-mono text-sm text-muted-foreground">
+        <p className="break-words font-mono text-sm text-muted-foreground">
           <a href={`mailto:${CONTACT.email}`} className="link-underline">
             {CONTACT.email}
           </a>

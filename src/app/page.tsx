@@ -20,7 +20,7 @@ export default async function Home() {
     <div className="max-w-screen overflow-x-clip">
       <SiteHeader />
 
-      <main id="main-content" className="mx-auto px-4 md:max-w-3xl">
+      <main id="main-content" className="mx-auto w-full min-w-0 px-4 md:max-w-3xl">
         <Profile />
         <SectionSeparator />
         <Overview />
@@ -40,7 +40,7 @@ export default async function Home() {
         <div className="h-4 border-x border-line" />
       </main>
 
-      <div className="mx-auto px-4 md:max-w-3xl">
+      <div className="mx-auto w-full min-w-0 px-4 md:max-w-3xl">
         <SiteFooter />
       </div>
 

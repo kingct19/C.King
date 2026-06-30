@@ -153,20 +153,29 @@
 
   html {
     scroll-behavior: smooth;
-  }
-
-  [id] {
-    scroll-margin-top: 4.5rem;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
   }
 
   h1,
   h2,
   h3 {
     font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  [id] {
+    scroll-margin-top: 4.5rem;
+  }
+
+  @media (max-width: 767px) {
+    [id] {
+      scroll-margin-top: 3.75rem;
+    }
   }
 
   ::selection {

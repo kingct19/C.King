@@ -30,7 +30,7 @@ export function ReactionDock({ items, className }: ReactionDockProps) {
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto flex h-16 items-end gap-3 rounded-2xl border border-border bg-muted/80 px-4 pb-3 dark:bg-muted/40",
+        "mx-auto flex h-14 max-w-full items-end gap-2 rounded-2xl border border-border bg-muted/80 px-3 pb-3 sm:h-16 sm:gap-3 sm:px-4 dark:bg-muted/40",
         className
       )}
     >
@@ -70,7 +70,7 @@ function DockItem({
     return val - bounds.x - bounds.width / 2;
   });
 
-  const widthSync = useTransform(distance, [-150, 0, 150], [40, 72, 40]);
+  const widthSync = useTransform(distance, [-150, 0, 150], [44, 56, 44]);
   const width = useSpring(widthSync, {
     mass: 0.1,
     stiffness: 150,

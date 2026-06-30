@@ -26,9 +26,9 @@ function OverviewRow({
   ...props
 }: ComponentProps<"div"> & { icon: ReactNode }) {
   return (
-    <div className={cn("flex h-6 items-center gap-4", className)} {...props}>
+    <div className={cn("flex min-h-6 min-w-0 items-start gap-4 sm:items-center", className)} {...props}>
       <IconChip>{icon}</IconChip>
-      <p className="flex-1 truncate font-mono text-sm">{children}</p>
+      <p className="min-w-0 flex-1 font-mono text-sm break-words">{children}</p>
     </div>
   );
 }

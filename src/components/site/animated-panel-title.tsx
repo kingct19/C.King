@@ -19,7 +19,7 @@ export function AnimatedPanelTitle({
   return (
     <h2
       ref={ref}
-      className={cn("text-3xl font-semibold tracking-tight", className)}
+      className={cn("text-2xl font-semibold tracking-tight sm:text-3xl", className)}
       {...props}
     >
       {inView ? (

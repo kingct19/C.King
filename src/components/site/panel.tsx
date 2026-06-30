@@ -22,7 +22,7 @@ export function PanelTitle({
   ...props
 }: ComponentProps<"h2"> & { sup?: string }) {
   return (
-    <h2 className={cn("text-3xl font-semibold tracking-tight", className)} {...props}>
+    <h2 className={cn("text-2xl font-semibold tracking-tight sm:text-3xl", className)} {...props}>
       {children}
       {sup ? (
         <sup className="top-[-0.75em] ml-1 font-mono text-sm font-medium tracking-normal text-muted-foreground">

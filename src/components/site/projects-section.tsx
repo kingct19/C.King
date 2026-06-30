@@ -47,7 +47,7 @@ function ProjectRow({ project }: { project: ProjectItem }) {
             <FolderCodeIcon className="size-4" />
           </span>
 
-          <span className="flex flex-1 flex-col">
+          <span className="flex min-w-0 flex-1 flex-col">
             <span className="font-medium">{project.title}</span>
             <span className="font-mono text-sm text-muted-foreground">
               {project.period}
