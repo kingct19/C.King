@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#e0e0e0"/>
+  <rect x="100" y="100" width="600" height="400" fill="#d0d0d0" rx="8"/>
+  <rect x="150" y="150" width="200" height="20" fill="#a0a0a0" rx="4"/>
+  <rect x="150" y="190" width="500" height="12" fill="#b0b0b0" rx="2"/>
+  <rect x="150" y="220" width="450" height="12" fill="#b0b0b0" rx="2"/>
+  <rect x="150" y="250" width="480" height="12" fill="#b0b0b0" rx="2"/>
+  <rect x="150" y="320" width="120" height="40" fill="#a0a0a0" rx="4"/>
+  <text x="400" y="560" text-anchor="middle" fill="#666" font-family="system-ui" font-size="14">Project Screenshot</text>
+</svg>
+
