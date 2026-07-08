@@ -281,3 +281,14 @@
 @utility btn-fill-soft {
   @apply inline-flex items-center justify-center gap-2 rounded-full bg-muted px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent;
 }
+
+@page {
+  margin: 0.6in;
+}
+
+@media print {
+  html,
+  body {
+    background: white;
+  }
+}

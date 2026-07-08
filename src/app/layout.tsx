@@ -30,32 +30,33 @@ const geistMono = Geist_Mono({
 });
 
 const description =
-  "Chandler King — Founder, Head of Technology & Agentic Engineer at Sozo Tech Enterprise. Building AnglerIQ and The Sozo CRM.";
+  "Chandler King — software engineer in Dallas, TX. Full-stack and mobile development with React, Next.js, React Native, and TypeScript. Founder of Sozo Tech Enterprise, builder of The Sozo CRM and AnglerIQ.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Chandler King – Founder & Agentic Engineer",
+    default: "Chandler King – Software Engineer",
     template: "%s · Chandler King",
   },
   description,
   keywords: [
     "Chandler King",
-    "agentic engineer",
-    "Sozo Tech Enterprise",
-    "AnglerIQ",
-    "The Sozo CRM",
-    "AI mobile app",
-    "fish finder",
-    "startup founder",
-    "Head of Technology",
+    "software engineer",
+    "full-stack engineer",
+    "mobile developer",
+    "React",
+    "Next.js",
     "React Native",
-    "Dallas",
+    "TypeScript",
+    "AI engineer",
+    "machine learning",
+    "Dallas TX",
+    "Sozo Tech Enterprise",
   ],
   authors: [{ name: SITE.name, url: SITE.url }],
   creator: SITE.name,
   openGraph: {
-    title: "Chandler King – Founder & Agentic Engineer",
+    title: "Chandler King – Software Engineer",
     description,
     url: SITE.url,
     siteName: SITE.name,
@@ -66,13 +67,13 @@ export const metadata: Metadata = {
         url: SITE.avatar,
         width: 800,
         height: 800,
-        alt: `${SITE.name} — Founder & Agentic Engineer`,
+        alt: `${SITE.name} — Software Engineer`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chandler King – Founder & Agentic Engineer",
+    title: "Chandler King – Software Engineer",
     description,
     images: [SITE.avatar],
   },

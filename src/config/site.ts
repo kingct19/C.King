@@ -18,14 +18,14 @@ export const SITE = {
   url: "https://chandlerking.dev",
   domain: "chandlerking.dev",
   tagline:
-    "I build AI-powered mobile & SaaS products, ship with agentic engineering workflows, and lead dev teams from zero to production.",
+    "Software engineer building AI-powered web and mobile products with React, React Native, and TypeScript — from architecture to production.",
   flipTitles: [
+    "Software Engineer",
+    "Full-Stack Engineer",
     "Founder @ Sozo Tech Enterprise",
-    "Agentic Engineer",
-    "Head of Technology",
-    "AI & Mobile Product Builder",
+    "Mobile & AI Product Builder",
   ],
-  avatar: "/images/6B860135-AA52-4B11-B8AA-EFE96BE31E45_1_105_c.jpeg",
+  avatar: "/images/chandler-king.jpeg",
   github: {
     username: "kingct19",
     repo: "C.King",
@@ -36,7 +36,7 @@ export const OVERVIEW = {
   rows: [
     {
       icon: "briefcase",
-      label: "Founder & Head of Technology @",
+      label: "Founder & Lead Software Engineer @",
       link: { text: SOZO.name, href: SOZO.url },
     },
     {
@@ -57,7 +57,7 @@ export type AvailabilityStatus = "open" | "selective" | "busy";
 
 export const AVAILABILITY: { status: AvailabilityStatus; label: string } = {
   status: "open",
-  label: "Open to partnerships & leadership roles",
+  label: "Open to software engineering roles",
 };
 
 export const RESUME = {
@@ -74,11 +74,11 @@ export const SOCIAL_LINKS = [
 ] as const;
 
 export const ABOUT_BULLETS = [
-  "I'm Chandler King — founder of Sozo Tech Enterprise, where I build AI-powered software products and lead a team of developers from idea to launch.",
-  "I work as an agentic engineer — using AI agents, automation, and modern tooling to ship faster without sacrificing architecture or code quality.",
-  "I earned my B.S. and M.S. in Computer Science with an AI focus, combining academic depth with hands-on product execution.",
-  "Before Sozo, I spent a year as Head of Technology at Elevate Solar — where I built their website and an AI facial recognition application.",
-  "Today I'm shipping The Sozo CRM and AnglerIQ, an AI-first mobile fish finder, while managing delivery across a growing dev team.",
+  "I'm Chandler King — a software engineer in Dallas, TX with a B.S. and M.S. in Computer Science (AI concentration) from Texas A&M University–Commerce.",
+  "I work full-stack: React and Next.js on the web, React Native and Flutter on mobile, Node.js and PostgreSQL on the backend.",
+  "I founded Sozo Tech Enterprise, where I lead a small dev team and have shipped two products to production: The Sozo CRM and AnglerIQ, an AI-powered mobile fish finder.",
+  "I use AI-assisted development workflows — Cursor, LLM integration, and agent tooling — to move faster without sacrificing architecture or code quality.",
+  "Before Sozo, I led technology at Elevate Solar, where I built and launched the company website and an internal facial recognition application.",
 ];
 
 export const STACK: { label: string; items: string[] }[] = [
@@ -162,7 +162,7 @@ export const PINNED_PROJECTS: PinnedProject[] = [
     title: "The Sozo CRM",
     period: "2024 — present",
     description:
-      "Customer relationship platform built at Sozo Tech Enterprise — the product that launched the company after securing investor backing.",
+      "Customer relationship platform built at Sozo Tech Enterprise — the company's first product, shipped from zero to production.",
     bullets: [
       "Full-stack CRM designed for modern sales and client workflows",
       "Shipped from zero to production at www.thesozocrm.com",
@@ -246,30 +246,21 @@ export const EXPERIENCES: ExperienceItemType[] = [
     positions: [
       {
         id: "sozo-founder",
-        title: "Founder & Head of Technology",
+        title: "Founder & Lead Software Engineer",
         employmentPeriod: { start: "01.2025" },
         employmentType: "Full-time",
         description:
-          "- Founded Sozo Tech Enterprise after securing investment from two backers.\n- Lead product, architecture, and engineering across CRM and mobile initiatives.\n- Apply agentic engineering workflows to accelerate delivery across a team of 3+ developers.",
+          "- Founded an investor-backed software company; lead product, architecture, and engineering across web and mobile.\n- Shipped The Sozo CRM (thesozocrm.com) from concept to production with Next.js, TypeScript, and PostgreSQL.\n- Building AnglerIQ, an AI-powered fish finder mobile app, with React Native and computer vision.\n- Manage a team of 3 developers — roadmap, sprint planning, code review, and releases.",
         skills: [
-          "Leadership",
-          "Product Strategy",
-          "Agentic Engineering",
           "TypeScript",
+          "Next.js",
           "React Native",
+          "PostgreSQL",
           "AI/ML",
-          "Project Management",
+          "Team Leadership",
+          "Product Strategy",
         ],
         isExpanded: true,
-      },
-      {
-        id: "sozo-products",
-        title: "Lead Developer & Project Manager",
-        employmentPeriod: { start: "01.2025" },
-        employmentType: "Full-time",
-        description:
-          "- Shipped The Sozo CRM (thesozocrm.com) from concept to production.\n- Currently building AnglerIQ — an AI-first fish finder mobile application.\n- Own roadmap, technical decisions, and cross-team coordination.",
-        skills: ["Next.js", "React Native", "PostgreSQL", "Computer Vision", "Agile"],
       },
     ],
   },
@@ -282,15 +273,15 @@ export const EXPERIENCES: ExperienceItemType[] = [
         id: "solar-head",
         title: "Head of Technology",
         employmentPeriod: { start: "01.2024", end: "12.2024" },
-        employmentType: "Full-time",
+        employmentType: "Part-time",
         description:
-          "- Led all technology strategy, infrastructure, and software for a solar energy company.\n- Built and launched www.elevate-solar.com — the company's public website.\n- Developed an AI facial recognition application for operational use.\n- Experience directly informed the investor pitch and launch of Sozo Tech Enterprise.",
+          "- Owned technology for a solar energy company while completing my B.S. in Computer Science.\n- Designed, built, and launched the company website (elevate-solar.com) to support sales and lead generation.\n- Built an internal facial recognition application using computer vision.\n- Managed the company's software tooling and infrastructure.",
         skills: [
-          "Technical Leadership",
-          "System Architecture",
           "Full-Stack Development",
+          "Next.js",
+          "TypeScript",
           "Computer Vision",
-          "Team Building",
+          "Technical Leadership",
         ],
         isExpanded: true,
       },
@@ -329,7 +320,7 @@ export const CONTACT = {
   hire: {
     headline: "Hire me",
     description:
-      "Looking for a technical leader who ships with modern AI workflows? I'm open to senior engineering, Head of Technology, and founding-team roles.",
+      "I'm looking for a full-time software engineering role — full-stack, mobile, or AI-focused. I bring end-to-end production experience and the ownership mindset of a founder.",
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/chandler-king-052861240" },
       { label: "GitHub", href: "https://github.com/kingct19" },
@@ -346,12 +337,7 @@ export const CONTACT = {
 
 export const WORK_WITH_SOZO = {
   description:
-    "Sozo Tech Enterprise builds custom software for clients while shipping our own products — The Sozo CRM and AnglerIQ. Backed by two investors. Led by a hands-on founder who still writes code and runs delivery.",
-  metrics: [
-    { label: "Developers led", value: "3+" },
-    { label: "Products shipped", value: "5+" },
-    { label: "Investors", value: "2" },
-  ],
+    "Sozo Tech Enterprise is the investor-backed software company I founded — we ship our own products, The Sozo CRM and AnglerIQ, and build custom software for clients. Here's the kind of work I do there day to day.",
   services: [
     {
       icon: "code",
@@ -369,7 +355,7 @@ export const WORK_WITH_SOZO = {
     },
     {
       icon: "briefcase",
-      title: "Technical Leadership & PM",
+      title: "Technical Leadership",
       description:
         "Team management, sprint planning, architecture decisions, and client communication — I lead the build, not just the code.",
       tags: ["Agile", "Product Strategy", "Team Leadership"],

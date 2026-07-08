@@ -28,22 +28,6 @@ export function WorkWithSection() {
           {WORK_WITH_SOZO.description}
         </p>
 
-        <StaggerFadeList
-          as="div"
-          className="grid gap-3 sm:grid-cols-3"
-          staggerDelay={0.08}
-        >
-          {WORK_WITH_SOZO.metrics.map((metric) => (
-            <li
-              key={metric.label}
-              className="rounded-lg bg-muted px-3 py-2.5"
-            >
-              <p className="font-mono text-lg font-medium tabular-nums">{metric.value}</p>
-              <p className="font-mono text-xs text-muted-foreground">{metric.label}</p>
-            </li>
-          ))}
-        </StaggerFadeList>
-
         <StaggerFadeList as="div" className="flex flex-col gap-4" staggerDelay={0.12}>
           {WORK_WITH_SOZO.services.map((service) => {
             const Icon = SERVICE_ICONS[service.icon] ?? CodeIcon;
