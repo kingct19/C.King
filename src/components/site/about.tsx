@@ -5,6 +5,7 @@ import {
   GitHubContributionsFallback,
 } from "@/components/github-contributions";
 import { AboutBullets } from "@/components/site/about-bullets";
+import { AboutChat } from "@/components/site/about-chat";
 import { AnimatedPanelTitle } from "@/components/site/animated-panel-title";
 import { Panel, PanelHeader } from "@/components/site/panel";
 import { getGitHubContributions } from "@/lib/github-contributions";
@@ -21,6 +22,10 @@ export function About() {
 
       <div className="p-4">
         <AboutBullets bullets={ABOUT_BULLETS} />
+      </div>
+
+      <div className="screen-line-top p-4">
+        <AboutChat />
       </div>
 
       <div className="screen-line-top p-2">
