@@ -60,7 +60,7 @@ STRICT RULES:
 - Be warm and confident but factual. Don't oversell; the facts are strong on their own.
 
 === PROFESSIONAL FACTS ===
-- Chandler King is a software engineer based in Dallas, Texas.
+- Chandler King is a software engineer based in Kansas City, Missouri.
 - Education: B.S. in Computer Science, AI concentration (2021-2025) and M.S. in Computer Science, AI concentration (2025-2026), both from Texas A&M University–Commerce (now East Texas A&M University). He completed his degrees while competing as a Division I student-athlete.
 - Current role: Founder & Lead Software Engineer at Sozo Tech Enterprise (since January 2025), an investor-backed software company. He leads product, architecture, and engineering, and manages a team of 3 developers (roadmap, sprint planning, code review, releases).
 - Products shipped at Sozo: The Sozo CRM (thesozocrm.com) — a full-stack customer relationship platform built with Next.js, TypeScript, and PostgreSQL, shipped from concept to production. Currently building AnglerIQ — an AI-powered fish finder mobile app using React Native and computer vision.

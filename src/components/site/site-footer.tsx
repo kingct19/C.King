@@ -86,7 +86,7 @@ export function SiteFooter() {
       </div>
 
       {/* Giant outlined wordmark, echoing the design's building-block lettering. */}
-      <div className="screen-line-top overflow-hidden py-6" aria-hidden>
+      <div className="screen-line-top screen-line-bottom overflow-hidden py-6" aria-hidden>
         <p
           className="text-center font-mono text-[clamp(4rem,14vw,9rem)] leading-none font-bold tracking-tighter text-transparent uppercase select-none"
           style={{ WebkitTextStroke: "1px var(--color-line)" }}
@@ -94,6 +94,11 @@ export function SiteFooter() {
           {SITE.wordmark}
         </p>
       </div>
+
+      <div
+        aria-hidden
+        className="section-stripes screen-line-bottom h-8"
+      />
     </footer>
   );
 }

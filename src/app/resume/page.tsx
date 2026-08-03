@@ -6,7 +6,7 @@ import { PrintToolbar } from "./print-toolbar";
 
 export const metadata: Metadata = {
   title: "Resume",
-  description: `Resume of ${SITE.name} — Software Engineer in Dallas, TX.`,
+  description: `Resume of ${SITE.name} — Software Engineer in Kansas City, MO.`,
 };
 
 const SUMMARY =

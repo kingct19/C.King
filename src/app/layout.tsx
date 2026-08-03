@@ -30,12 +30,12 @@ const geistMono = Geist_Mono({
 });
 
 const description =
-  "Chandler King — software engineer in Dallas, TX. Full-stack and mobile development with React, Next.js, React Native, and TypeScript. Founder of Sozo Tech Enterprise, builder of The Sozo CRM and AnglerIQ.";
+  "Chandler King — Software Engineer & Founder in Kansas City. Full-stack and mobile development with React, Next.js, React Native, and TypeScript. Founder of Sozo Tech Enterprise, builder of The Sozo CRM and AnglerIQ.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Chandler King – Software Engineer",
+    default: "Chandler King — Software Engineer & Founder in Kansas City",
     template: "%s · Chandler King",
   },
   description,
@@ -50,13 +50,14 @@ export const metadata: Metadata = {
     "TypeScript",
     "AI engineer",
     "machine learning",
-    "Dallas TX",
+    "Kansas City",
+    "Kansas City MO",
     "Sozo Tech Enterprise",
   ],
   authors: [{ name: SITE.name, url: SITE.url }],
   creator: SITE.name,
   openGraph: {
-    title: "Chandler King – Software Engineer",
+    title: "Chandler King — Software Engineer & Founder in Kansas City",
     description,
     url: SITE.url,
     siteName: SITE.name,
@@ -73,7 +74,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chandler King – Software Engineer",
+    title: "Chandler King — Software Engineer & Founder in Kansas City",
     description,
     images: [SITE.avatar],
   },

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowUpRightIcon, BriefcaseBusinessIcon, CodeIcon, SmartphoneIcon } from "lucide-react";
 import type { ComponentType } from "react";
 
@@ -62,15 +63,23 @@ export function WorkWithSection() {
           })}
         </StaggerFadeList>
 
-        <BorderGradientLink
-          href={WORK_WITH_SOZO.cta.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex h-9 w-fit items-center rounded-full bg-brand-blue px-4 text-sm font-medium text-white"
-        >
-          {WORK_WITH_SOZO.cta.label}
-          <ArrowUpRightIcon className="size-4" />
-        </BorderGradientLink>
+        <div className="flex flex-wrap items-center gap-3">
+          <BorderGradientLink
+            href={WORK_WITH_SOZO.cta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-9 w-fit items-center rounded-full bg-brand-blue px-4 text-sm font-medium text-white"
+          >
+            {WORK_WITH_SOZO.cta.label}
+            <ArrowUpRightIcon className="size-4" />
+          </BorderGradientLink>
+          <Link
+            href="/services"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            See client services →
+          </Link>
+        </div>
       </PanelContent>
     </Panel>
   );

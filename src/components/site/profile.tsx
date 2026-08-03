@@ -4,11 +4,12 @@ import Image from "next/image";
 import { BadgeCheckIcon } from "lucide-react";
 import { motion } from "motion/react";
 
+import { BorderGradientLink } from "@/components/border-gradient";
 import { TextBlurIn } from "@/components/blur-in";
 import { CardParallaxTilt } from "@/components/parallax-tilt";
 import { AvailabilityBadge } from "@/components/site/availability-badge";
 import { TextFlip } from "@/components/text-flip";
-import { AVAILABILITY, SITE } from "@/config/site";
+import { AVAILABILITY, CALENDLY_URL, SITE } from "@/config/site";
 
 export function Profile() {
   return (
@@ -16,14 +17,14 @@ export function Profile() {
       <div className="relative p-4">
         <CardParallaxTilt
           maxTilt={8}
-          className="group/cover relative aspect-[16/10] w-full overflow-hidden sm:aspect-[569/362]"
+          className="group/cover relative aspect-[4/3] w-full overflow-hidden sm:aspect-[5/4]"
         >
           <Image
             src={SITE.avatar}
             alt={SITE.name}
             fill
             priority
-            className="object-cover object-[50%_20%] grayscale transition-[filter] duration-700 group-hover/cover:grayscale-0"
+            className="object-cover object-[50%_18%] grayscale transition-[filter] duration-700 group-hover/cover:grayscale-0"
           />
           <div
             aria-hidden
@@ -82,6 +83,22 @@ export function Profile() {
           label={AVAILABILITY.label}
           className="mt-3"
         />
+
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55, duration: 0.4, ease: "easeOut" }}
+          className="mt-4"
+        >
+          <BorderGradientLink
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-9 w-fit items-center rounded-full bg-brand-blue px-4 text-sm font-medium text-white"
+          >
+            Book a free 30-min scoping call
+          </BorderGradientLink>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { FileDownIcon } from "lucide-react";
+import { FileDownIcon, CalendarIcon } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 
 import { MenuMorphIcon } from "@/components/morph";
 import { ThemeToggle } from "@/components/site/theme-toggle";
-import { RESUME } from "@/config/site";
+import { CALENDLY_URL, RESUME } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 type NavItem = {
@@ -112,12 +112,23 @@ export function MobileNav({ items }: { items: NavItem[] }) {
                 animate={{ opacity: 1, x: 0 }}
                 exit={reducedMotion ? undefined : { opacity: 0, x: -10 }}
                 transition={itemTransition(items.length)}
+                className="mt-3 flex flex-col gap-1"
               >
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={close}
+                  className="flex min-h-11 items-center gap-2 rounded-lg px-3 font-mono text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                >
+                  <CalendarIcon className="size-4" />
+                  Scoping call
+                </a>
                 <a
                   href={RESUME.href}
                   download={RESUME.filename}
                   onClick={close}
-                  className="mt-3 flex min-h-11 items-center gap-2 rounded-lg px-3 font-mono text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                  className="flex min-h-11 items-center gap-2 rounded-lg px-3 font-mono text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                 >
                   <FileDownIcon className="size-4" />
                   {RESUME.label}

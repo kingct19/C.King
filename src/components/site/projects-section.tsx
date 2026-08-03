@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useRef } from "react";
 import { ArrowUpRightIcon, FolderCodeIcon } from "lucide-react";
 
@@ -16,6 +17,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { getProjectPageHref } from "@/config/project-pages";
 import type { ProjectItem } from "@/config/site";
 
 function ProjectRow({ project }: { project: ProjectItem }) {
@@ -54,17 +56,31 @@ function ProjectRow({ project }: { project: ProjectItem }) {
             </span>
           </span>
 
-          {project.href ? (
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open ${project.title}`}
-              onClick={(event) => event.stopPropagation()}
-              className="text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <ArrowUpRightIcon className="size-4" />
-            </a>
+          {project.href || getProjectPageHref(project.title) ? (
+            <span className="flex items-center gap-2">
+              {getProjectPageHref(project.title) ? (
+                <Link
+                  href={getProjectPageHref(project.title)!}
+                  aria-label={`View ${project.title} case study`}
+                  onClick={(event) => event.stopPropagation()}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Case study
+                </Link>
+              ) : null}
+              {project.href ? (
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${project.title}`}
+                  onClick={(event) => event.stopPropagation()}
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <ArrowUpRightIcon className="size-4" />
+                </a>
+              ) : null}
+            </span>
           ) : null}
 
           {hasDetails ? (

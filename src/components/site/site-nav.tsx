@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
@@ -14,9 +15,15 @@ type NavItem = {
 };
 
 export function SiteNav({ items }: { items: NavItem[] }) {
+  const pathname = usePathname();
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
+    if (pathname !== "/") {
+      setActiveSection(null);
+      return;
+    }
+
     const sections = SECTION_IDS.flatMap((id) => {
       const element = document.getElementById(id);
       return element ? [{ id, element }] : [];
@@ -45,19 +52,21 @@ export function SiteNav({ items }: { items: NavItem[] }) {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   return (
-    <ul className="flex items-center justify-end gap-3 sm:justify-center sm:gap-4">
+    <ul className="flex items-center justify-center gap-2.5 overflow-x-auto lg:gap-3.5">
       {items.map((item) => {
-        const isActive = item.sectionId && activeSection === item.sectionId;
+        const isSectionActive = Boolean(item.sectionId && activeSection === item.sectionId);
+        const isPathActive = !item.sectionId && pathname === item.href;
+        const isActive = isSectionActive || isPathActive;
 
         return (
           <li key={item.href} className="shrink-0">
             <Link
               href={item.href}
               className={cn(
-                "relative text-sm font-medium transition-colors",
+                "relative whitespace-nowrap text-xs font-medium transition-colors lg:text-sm",
                 isActive
                   ? "text-foreground after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-foreground"
                   : "text-muted-foreground hover:text-foreground"

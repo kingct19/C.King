@@ -25,7 +25,7 @@ export const SITE = {
     "Founder @ Sozo Tech Enterprise",
     "Mobile & AI Product Builder",
   ],
-  avatar: "/images/chandler-king.jpeg",
+  avatar: "/images/chandler-king-headshot.jpg",
   github: {
     username: "kingct19",
     repo: "C.King",
@@ -45,7 +45,7 @@ export const OVERVIEW = {
       link: { text: "AnglerIQ", href: "#projects" },
     },
   ],
-  location: "Dallas, Texas, USA",
+  location: "Kansas City, Missouri, USA",
   timeZone: "America/Chicago",
   email: "chandler@thesozotech.com",
   phone: "+1 (903) 424-4805",
@@ -74,7 +74,7 @@ export const SOCIAL_LINKS = [
 ] as const;
 
 export const ABOUT_BULLETS = [
-  "I'm Chandler King — a software engineer in Dallas, TX with a B.S. and M.S. in Computer Science (AI concentration) from Texas A&M University–Commerce.",
+  "I'm Chandler King — a software engineer in Kansas City, MO with a B.S. and M.S. in Computer Science (AI concentration) from Texas A&M University–Commerce.",
   "I work full-stack: React and Next.js on the web, React Native and Flutter on mobile, Node.js and PostgreSQL on the backend.",
   "I founded Sozo Tech Enterprise, where I lead a small dev team and have shipped two products to production: The Sozo CRM and AnglerIQ, an AI-powered mobile fish finder.",
   "I use AI-assisted development workflows — Cursor, LLM integration, and agent tooling — to move faster without sacrificing architecture or code quality.",
@@ -362,6 +362,100 @@ export const WORK_WITH_SOZO = {
     },
   ],
   cta: { label: "Visit thesozocrm.com", href: SOZO.crmUrl },
+};
+
+export const CALENDLY_URL = "https://calendly.com/chandler-thesozotech/sozo-tech";
+
+export const SERVICES_PAGE = {
+  meta: {
+    title: "Services",
+    description:
+      "Sozo Tech builds websites and apps for Kansas City businesses and startups. Launch sites, growth builds, and MVP sprints — book a free 30-minute scoping call.",
+  },
+  hero: {
+    headline: "Websites and apps that bring Kansas City businesses customers",
+    subhead:
+      "Plain-English builds for local owners and founders — from a launch-ready site to a first product customers can use.",
+    cta: { label: "Book a free 30-minute scoping call", href: CALENDLY_URL },
+  },
+  offers: [
+    {
+      title: "Launch Site",
+      price: "from $3,500",
+      audience: "For small businesses",
+      points: [
+        "5-page mobile-first site",
+        "Contact or booking ready",
+        "Local SEO basics",
+        "About 2-week delivery",
+      ],
+    },
+    {
+      title: "Growth Build",
+      price: "from $8,500",
+      audience: "For established businesses",
+      points: [
+        "Custom site or web app",
+        "Integrations (CRM, payments, scheduling)",
+        "Analytics so you can see what's working",
+      ],
+    },
+    {
+      title: "MVP Sprint",
+      price: "from $20,000",
+      audience: "For startups",
+      points: [
+        "Clickable product in 4–6 weeks",
+        "Web or mobile",
+        "AI features where they add real value",
+      ],
+    },
+  ],
+  carePlan: {
+    title: "Care Plan",
+    price: "$150–400/mo",
+    description:
+      "Hosting, updates, small edits, and a short monthly report so your site or app stays current without you chasing a developer.",
+  },
+  caseStudies: [
+    {
+      title: "elevate-solar.com",
+      framing: "Built to generate leads for a local business",
+      summary:
+        "Marketing site for Elevate Solar — fast, clear, and aimed at turning visitors into sales conversations.",
+      href: "https://www.elevate-solar.com",
+    },
+    {
+      title: "The Sozo CRM",
+      framing: "We ship real products, not just sites",
+      summary:
+        "Customer relationship platform built from zero to production — the kind of product work we bring to founders and growing teams.",
+      href: SOZO.crmUrl,
+    },
+  ],
+  faq: [
+    {
+      q: "How long does a project take?",
+      a: "Launch Site is typically about two weeks. Growth Builds vary with scope. MVP Sprints land a usable product in four to six weeks.",
+    },
+    {
+      q: "What's the process?",
+      a: "We start with a free 30-minute scoping call, agree on goals and budget, then design, build, review together, and launch.",
+    },
+    {
+      q: "What do you need from me?",
+      a: "Your goals, brand basics (logo and colors if you have them), content or rough notes, and examples of sites or apps you like. We'll fill gaps together.",
+    },
+    {
+      q: "How does payment work?",
+      a: "Typically a deposit to start, then the balance at launch. Care Plan is billed monthly. We'll confirm terms in writing before work begins.",
+    },
+  ],
+  closingCta: {
+    headline: "Ready to talk through your project?",
+    subhead: "Book a free 30-minute scoping call — no pitch deck required.",
+    cta: { label: "Book a free 30-minute scoping call", href: CALENDLY_URL },
+  },
 };
 
 export const FOOTER = {
