@@ -283,12 +283,24 @@
 }
 
 @page {
-  margin: 0.6in;
+  margin: 0.55in;
 }
 
 @media print {
   html,
   body {
-    background: white;
+    background: #ffffff !important;
+    color: #0a0a0a !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  #main-content {
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  #main-content article {
+    break-inside: avoid;
   }
 }

@@ -153,7 +153,6 @@ export const PINNED_PROJECTS: PinnedProject[] = [
       "Computer vision and location-aware features tuned for field use",
     ],
     tags: ["React Native", "AI/ML", "Computer Vision", "TypeScript", "Mobile"],
-    href: SOZO.url,
     previewImage: "/images/angleriq-preview.png",
     isExpanded: true,
   },
@@ -273,7 +272,7 @@ export const EXPERIENCES: ExperienceItemType[] = [
         id: "solar-head",
         title: "Head of Technology",
         employmentPeriod: { start: "01.2024", end: "12.2024" },
-        employmentType: "Part-time",
+        employmentType: "Full-time",
         description:
           "- Owned technology for a solar energy company while completing my B.S. in Computer Science.\n- Designed, built, and launched the company website (elevate-solar.com) to support sales and lead generation.\n- Built an internal facial recognition application using computer vision.\n- Managed the company's software tooling and infrastructure.",
         skills: [

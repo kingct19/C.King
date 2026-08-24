@@ -29,7 +29,6 @@ export const PROJECT_PAGES: ProjectPage[] = [
     period: "2025 — present",
     summary:
       "AI-first mobile fish finder — helping anglers locate and understand fish patterns with on-device intelligence and real-time insights.",
-    href: SOZO.url,
     previewImage: "/images/angleriq-preview.png",
     tags: ["React Native", "AI/ML", "Computer Vision", "TypeScript", "Mobile"],
     heading: "AnglerIQ",
