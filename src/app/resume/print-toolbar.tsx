@@ -1,6 +1,6 @@
 "use client";
 
-import { DownloadIcon, PrinterIcon } from "lucide-react";
+import { FileDownIcon, PrinterIcon } from "lucide-react";
 
 import { RESUME } from "@/config/site";
 
@@ -10,14 +10,18 @@ export function PrintToolbar() {
       <a
         href={RESUME.href}
         download={RESUME.filename}
-        className="btn-fill-soft h-9 px-4"
+        className="micro-press inline-flex h-8 items-center gap-1.5 rounded-md bg-foreground px-3 text-xs font-medium text-background transition-opacity hover:opacity-90"
       >
-        <DownloadIcon className="size-4" />
+        <FileDownIcon className="size-3.5" />
         Download PDF
       </a>
-      <button type="button" onClick={() => window.print()} className="btn-fill h-9">
-        <PrinterIcon className="size-4" />
-        Print
+      <button
+        type="button"
+        onClick={() => window.print()}
+        className="micro-press inline-flex h-8 items-center gap-1.5 rounded-md border border-dashed bg-background px-3 font-mono text-xs text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
+      >
+        <PrinterIcon className="size-3.5" />
+        Print Resume
       </button>
     </div>
   );

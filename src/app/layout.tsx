@@ -1,26 +1,31 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Inter, Syne } from "next/font/google";
-import { ThemeProvider } from "next-themes";
+import { DM_Sans, Geist_Mono, Instrument_Serif } from "next/font/google";
 
+import { BottomNav } from "@/components/landing/bottom-nav";
+import { BackToTop } from "@/components/shared/back-to-top";
+import { FrameGutters } from "@/components/shared/frame-gutters";
+import { SiteHeader } from "@/components/shared/site-header";
+import { ThemeProvider } from "@/components/shared/theme-provider";
 import { JsonLd } from "@/components/site/json-ld";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { SITE } from "@/config/site";
+import { siteConfig, SITE } from "@/config/site";
+import { cn } from "@/lib/utils";
 
 import "../styles/theme-transition.css";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const DmSans = DM_Sans({
   subsets: ["latin"],
+  variable: "--font-sans",
   display: "swap",
-  weight: ["400", "500"],
 });
 
-const syne = Syne({
-  variable: "--font-syne",
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
   display: "swap",
-  weight: ["400", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -29,35 +34,20 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const description =
-  "Chandler King — Software Engineer & Founder in Kansas City. Full-stack and mobile development with React, Next.js, React Native, and TypeScript. Founder of Sozo Tech Enterprise, builder of The Sozo CRM and AnglerIQ.";
+const description = siteConfig.meta.description;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Chandler King — Software Engineer & Founder in Kansas City",
-    template: "%s · Chandler King",
+    default: siteConfig.meta.title,
+    template: siteConfig.meta.titleTemplate,
   },
   description,
-  keywords: [
-    "Chandler King",
-    "software engineer",
-    "full-stack engineer",
-    "mobile developer",
-    "React",
-    "Next.js",
-    "React Native",
-    "TypeScript",
-    "AI engineer",
-    "machine learning",
-    "Kansas City",
-    "Kansas City MO",
-    "Sozo Tech Enterprise",
-  ],
+  keywords: siteConfig.meta.keywords,
   authors: [{ name: SITE.name, url: SITE.url }],
   creator: SITE.name,
   openGraph: {
-    title: "Chandler King — Software Engineer & Founder in Kansas City",
+    title: siteConfig.meta.title,
     description,
     url: SITE.url,
     siteName: SITE.name,
@@ -74,12 +64,20 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chandler King — Software Engineer & Founder in Kansas City",
+    title: siteConfig.meta.title,
     description,
     images: [SITE.avatar],
   },
   alternates: {
     canonical: SITE.url,
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/favicon.png",
+    apple: "/apple-icon",
   },
   robots: {
     index: true,
@@ -93,7 +91,7 @@ export const viewport: Viewport = {
   viewportFit: "cover",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: dark)", color: "#141414" },
   ],
 };
 
@@ -103,20 +101,40 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${syne.variable} ${geistMono.variable} antialiased`}
-      >
+    <html
+      lang="en"
+      className={cn(
+        "bg-background font-sans",
+        DmSans.variable,
+        instrumentSerif.variable,
+      )}
+      suppressHydrationWarning
+    >
+      <body className={`${geistMono.variable} antialiased`}>
+        <noscript>
+          <style>{`.no-js-visible { opacity: 1 !important; transform: none !important; stroke-dashoffset: 0 !important; stroke-dasharray: none !important; }`}</style>
+        </noscript>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:shadow-md focus:ring-2 focus:ring-ring"
         >
           Skip to content
         </a>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <TooltipProvider delayDuration={300}>
+        <ThemeProvider>
+          <TooltipProvider delayDuration={150}>
             <JsonLd />
-            {children}
+            <SiteHeader />
+            <FrameGutters />
+            <div className="relative mx-auto w-full max-w-[var(--frame-max-w)]">
+              <div
+                id="main-content"
+                className="relative w-full border-x border-dashed bg-muted/20"
+              >
+                {children}
+              </div>
+              <BottomNav />
+              <BackToTop />
+            </div>
           </TooltipProvider>
         </ThemeProvider>
       </body>

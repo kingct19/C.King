@@ -1,0 +1,179 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { trackEvent } from "@/lib/analytics";
+
+export function Vader() {
+  const [ignited, setIgnited] = useState(false);
+  const chidoriAudio = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    const audio = chidoriAudio.current;
+
+    return () => {
+      audio?.pause();
+    };
+  }, []);
+
+  const handleToggle = () => {
+    const nextIgnited = !ignited;
+    setIgnited(nextIgnited);
+    trackEvent("vader_lightsaber_toggled", {
+      action: nextIgnited ? "ignite" : "extinguish",
+    });
+
+    const audio = chidoriAudio.current;
+    if (!audio) return;
+    if (!nextIgnited) {
+      audio.pause();
+      audio.currentTime = 0;
+      return;
+    }
+    audio.currentTime = 0;
+    audio.volume = 0.55;
+    audio.play().catch(() => {});
+  };
+
+  return (
+    <div className="absolute right-[calc(3.5rem+(100%-100vw)/2)] -top-6 z-10 hidden justify-center px-6 py-6 xl:flex">
+      <button
+        type="button"
+        aria-label={
+          ignited
+            ? "Deactivate Kakashi's Sharingan & Chidori"
+            : "Activate Kakashi's Sharingan & Chidori"
+        }
+        aria-pressed={ignited}
+        onClick={handleToggle}
+        className="group flex flex-col items-center gap-2 rounded-lg px-6 py-3 text-muted-foreground outline-none hover:text-foreground focus-visible:ring-offset-4 focus-visible:ring-offset-background"
+      >
+        <svg
+          viewBox="0 0 32 45"
+          aria-hidden="true"
+          focusable="false"
+          className="size-26 overflow-visible transition-transform duration-200 group-hover:rotate-6 group-active:scale-95 motion-reduce:transform-none motion-reduce:transition-none"
+          shapeRendering="crispEdges"
+        >
+          {/* Ground shadow */}
+          <path d="M7 43h16v1H7z" className="fill-border" />
+
+          {/* Exact 1:1 Pixel-for-Pixel Kakashi Sprite from Reference */}
+          <path
+            fill="#010101"
+            d="M11 2h3v1h-3zM17 2h4v1h-4zM10 3h1v1h-1zM13 3h4v1h-4zM20 3h1v1h-1zM9 4h1v1h-1zM12 4h1v1h-1zM19 4h6v1h-6zM6 5h3v1h-3zM25 5h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM25 6h1v1h-1zM4 7h3v1h-3zM24 7h1v1h-1zM4 8h1v1h-1zM25 8h3v1h-3zM4 9h1v1h-1zM27 9h1v1h-1zM5 10h1v1h-1zM27 10h1v1h-1zM5 11h1v1h-1zM7 11h9v1h-9zM26 11h1v1h-1zM6 12h1v1h-1zM16 12h3v1h-3zM25 12h2v1h-2zM6 13h1v1h-1zM19 13h1v1h-1zM21 13h1v1h-1zM24 13h1v1h-1zM6 14h1v1h-1zM20 14h3v1h-3zM25 14h1v1h-1zM6 15h6v1h-6zM23 15h1v1h-1zM25 15h1v1h-1zM5 16h2v1h-2zM12 16h3v1h-3zM23 16h3v1h-3zM5 17h1v1h-1zM10 17h2v1h-2zM15 17h3v1h-3zM23 17h1v1h-1zM5 18h1v1h-1zM18 18h2v1h-2zM23 18h1v1h-1zM6 19h2v1h-2zM20 19h3v1h-3zM7 20h1v1h-1zM22 20h1v1h-1zM7 21h2v1h-2zM21 21h2v1h-2zM8 22h2v1h-2zM20 22h2v1h-2zM10 23h10v1h-10zM8 24h2v1h-2zM13 24h1v1h-1zM16 24h1v1h-1zM20 24h2v1h-2zM7 25h1v1h-1zM13 25h1v1h-1zM16 25h1v1h-1zM22 25h1v1h-1zM7 26h1v1h-1zM14 26h2v1h-2zM22 26h1v1h-1zM6 27h1v1h-1zM9 27h1v1h-1zM20 27h1v1h-1zM23 27h1v1h-1zM6 28h1v1h-1zM9 28h1v1h-1zM20 28h1v1h-1zM23 28h1v1h-1zM5 29h1v1h-1zM8 29h1v1h-1zM21 29h1v1h-1zM24 29h1v1h-1zM5 30h1v1h-1zM8 30h1v1h-1zM21 30h1v1h-1zM24 30h1v1h-1zM5 31h1v1h-1zM8 31h1v1h-1zM21 31h1v1h-1zM24 31h1v1h-1zM5 32h4v1h-4zM21 32h4v1h-4zM5 33h1v1h-1zM8 33h1v1h-1zM21 33h1v1h-1zM24 33h1v1h-1zM6 34h2v1h-2zM9 34h12v1h-12zM22 34h2v1h-2zM9 35h1v1h-1zM20 35h1v1h-1zM9 36h1v1h-1zM14 36h2v1h-2zM20 36h1v1h-1zM9 37h1v1h-1zM14 37h2v1h-2zM20 37h1v1h-1zM9 38h1v1h-1zM14 38h2v1h-2zM20 38h1v1h-1zM10 39h1v1h-1zM13 39h1v1h-1zM16 39h1v1h-1zM19 39h1v1h-1zM10 40h1v1h-1zM13 40h1v1h-1zM16 40h1v1h-1zM19 40h1v1h-1zM9 41h1v1h-1zM13 41h1v1h-1zM16 41h1v1h-1zM20 41h1v1h-1zM9 42h5v1h-5zM16 42h5v1h-5z"
+          />
+          <path
+            fill="#171926"
+            d="M7 12h1v1h-1zM7 14h1v1h-1zM22 15h1v1h-1zM22 17h1v1h-1zM20 18h3v1h-3zM10 22h1v1h-1zM19 22h1v1h-1zM14 24h2v1h-2zM14 25h2v1h-2zM6 30h2v1h-2zM22 30h2v1h-2zM13 36h1v1h-1zM16 36h1v1h-1zM16 37h1v1h-1zM10 38h4v1h-4zM16 38h4v1h-4z"
+          />
+          <path
+            fill="#28293c"
+            d="M8 12h2v1h-2zM7 13h3v1h-3zM8 14h2v1h-2zM12 15h1v1h-1zM20 15h2v1h-2zM15 16h2v1h-2zM20 16h3v1h-3zM18 17h4v1h-4zM13 19h4v1h-4zM8 20h14v1h-14zM9 21h12v1h-12zM11 22h8v1h-8zM8 26h1v1h-1zM21 26h1v1h-1zM8 27h1v1h-1zM21 27h1v1h-1zM7 28h2v1h-2zM21 28h2v1h-2zM6 29h2v1h-2zM22 29h2v1h-2zM10 35h10v1h-10zM10 36h3v1h-3zM17 36h3v1h-3zM17 37h3v1h-3zM11 40h2v1h-2zM17 40h2v1h-2zM12 41h1v1h-1zM17 41h1v1h-1z"
+          />
+          <path
+            fill="#46454b"
+            d="M14 13h1v1h-1zM16 13h1v1h-1zM13 14h3v1h-3z"
+          />
+          <path
+            fill="#9c9aa7"
+            d="M12 3h1v1h-1zM13 4h2v1h-2zM18 4h1v1h-1zM11 5h1v1h-1zM17 5h3v1h-3zM16 6h1v1h-1zM24 6h1v1h-1zM23 7h1v1h-1zM6 8h1v1h-1zM22 8h3v1h-3zM5 9h1v1h-1zM6 10h1v1h-1zM23 10h4v1h-4zM6 11h1v1h-1zM16 11h1v1h-1zM19 11h1v1h-1zM24 11h2v1h-2zM10 12h1v1h-1zM19 12h1v1h-1zM21 12h1v1h-1zM24 12h1v1h-1zM15 13h1v1h-1zM18 13h1v1h-1zM20 13h1v1h-1zM22 13h1v1h-1zM10 14h1v1h-1zM23 14h2v1h-2zM19 15h1v1h-1zM24 15h1v1h-1zM7 16h1v1h-1zM17 16h2v1h-2zM7 17h1v1h-1z"
+          />
+          <path
+            fill="#b6b5bb"
+            d="M11 12h1v1h-1zM14 12h2v1h-2zM10 13h2v1h-2zM17 13h1v1h-1zM11 14h1v1h-1zM16 14h4v1h-4zM13 15h6v1h-6zM19 16h1v1h-1zM11 39h2v1h-2zM17 39h2v1h-2z"
+          />
+          <path
+            fill="#cac9d5"
+            d="M11 3h1v1h-1zM17 3h3v1h-3zM10 4h2v1h-2zM15 4h3v1h-3zM9 5h2v1h-2zM12 5h5v1h-5zM20 5h5v1h-5zM7 6h1v1h-1zM9 6h7v1h-7zM17 6h7v1h-7zM7 7h16v1h-16zM5 8h1v1h-1zM7 8h15v1h-15zM6 9h21v1h-21zM7 10h16v1h-16zM17 11h2v1h-2zM20 11h4v1h-4zM20 12h1v1h-1zM22 12h2v1h-2zM13 13h1v1h-1zM23 13h1v1h-1z"
+          />
+          <path
+            fill="#e2e2e5"
+            d="M12 12h2v1h-2zM12 13h1v1h-1zM12 14h1v1h-1zM10 37h4v1h-4z"
+          />
+          <path fill="#ffffff" d="M9 17h1v1h-1zM9 18h1v1h-1z" />
+          <path fill="#3c303d" d="M10 18h2v1h-2z" />
+          <path
+            fill="#f8ceb2"
+            d="M9 16h3v1h-3zM6 17h1v1h-1zM8 17h1v1h-1zM12 17h2v1h-2zM6 18h1v1h-1zM8 18h1v1h-1zM12 18h5v1h-5zM8 19h5v1h-5zM17 19h1v1h-1zM19 19h1v1h-1zM6 31h1v1h-1zM23 31h1v1h-1zM6 33h1v1h-1zM23 33h1v1h-1zM10 41h1v1h-1zM19 41h1v1h-1z"
+          />
+          <path
+            fill="#d59e8d"
+            d="M8 16h1v1h-1zM14 17h1v1h-1zM7 18h1v1h-1zM17 18h1v1h-1zM7 31h1v1h-1zM22 31h1v1h-1zM7 33h1v1h-1zM22 33h1v1h-1zM11 41h1v1h-1zM18 41h1v1h-1z"
+          />
+          <path fill="#b98075" d="M18 19h1v1h-1z" />
+          <path
+            fill="#4d6747"
+            d="M10 24h1v1h-1zM19 24h1v1h-1zM8 25h1v1h-1zM11 25h1v1h-1zM18 25h1v1h-1zM21 25h1v1h-1zM9 26h1v1h-1zM12 26h2v1h-2zM16 26h2v1h-2zM20 26h1v1h-1zM10 27h2v1h-2zM15 27h1v1h-1zM18 27h2v1h-2zM15 28h1v1h-1zM9 29h1v1h-1zM15 29h1v1h-1zM20 29h1v1h-1zM9 30h1v1h-1zM15 30h1v1h-1zM20 30h1v1h-1zM9 31h1v1h-1zM15 31h1v1h-1zM20 31h1v1h-1zM9 32h12v1h-12zM15 33h1v1h-1z"
+          />
+          <path fill="#5c7b56" d="M11 28h2v1h-2zM17 28h2v1h-2z" />
+          <path
+            fill="#668e5b"
+            d="M11 24h2v1h-2zM17 24h2v1h-2zM9 25h2v1h-2zM12 25h1v1h-1zM17 25h1v1h-1zM19 25h2v1h-2zM10 26h2v1h-2zM18 26h2v1h-2zM12 27h3v1h-3zM16 27h2v1h-2zM10 28h1v1h-1zM13 28h2v1h-2zM16 28h1v1h-1zM19 28h1v1h-1zM10 29h1v1h-1zM13 29h2v1h-2zM16 29h1v1h-1zM19 29h1v1h-1zM10 30h1v1h-1zM13 30h2v1h-2zM16 30h1v1h-1zM19 30h1v1h-1zM10 31h5v1h-5zM16 31h4v1h-4zM9 33h6v1h-6zM16 33h5v1h-5z"
+          />
+          <path
+            fill="#6b4a36"
+            d="M11 29h2v1h-2zM17 29h2v1h-2zM12 30h1v1h-1zM17 30h1v1h-1z"
+          />
+          <path fill="#7b644e" d="M11 30h1v1h-1zM18 30h1v1h-1z" />
+          <path fill="#a72833" d="M7 27h1v1h-1zM22 27h1v1h-1z" />
+
+          {/* Sharingan Eye Glow + Chidori Lightning when clicked */}
+          {ignited && (
+            <g>
+              {/* Sharingan eye glow peeking under the headband */}
+              <g style={{ filter: "drop-shadow(0 0 2px #ef4444)" }}>
+                <path fill="#dc2626" d="M17 17h2v2h-2z" />
+                <path fill="#ffffff" d="M18 17h1v1h-1z" />
+                <path fill="#09090b" d="M17 18h1v1h-1z" />
+              </g>
+
+              {/* Chidori / Lightning Blade around left hand (x=6..8, y=31..33) */}
+              <g style={{ filter: "drop-shadow(0 0 3px #38bdf8)" }}>
+                <g>
+                  <animate
+                    attributeName="opacity"
+                    values="1;0.35;1;0.5;1"
+                    keyTimes="0;.25;.5;.75;1"
+                    calcMode="discrete"
+                    dur="0.35s"
+                    repeatCount="indefinite"
+                  />
+                  <path
+                    fill="#0284c7"
+                    d="M4 25h1v3h2v-2h1v3h2v1H8v2h3v1H9v3H8v-2H6v3H5v-3H2v-1h3v-2H3v-1h2v-2H4v-3z"
+                  />
+                  <path
+                    fill="#38bdf8"
+                    d="M5 22h1v3H5zM1 28h2v1H1zM10 29h2v1h-2zM2 35h2v2H2z"
+                  />
+                </g>
+                <g opacity="0">
+                  <animate
+                    attributeName="opacity"
+                    values="0;1;0;1;0"
+                    keyTimes="0;.25;.5;.75;1"
+                    calcMode="discrete"
+                    dur="0.35s"
+                    repeatCount="indefinite"
+                  />
+                  <path
+                    fill="#38bdf8"
+                    d="M3 24h1v3h3v-3h1v4h3v1H8v2h2v1H8v4H7v-3H4v3H3v-4H1v-1h3v-2H2v-1h2v-2H3v-2z"
+                  />
+                </g>
+                <path fill="#7dd3fc" d="M4 30h5v5H4z" />
+                <path fill="#e0f2fe" d="M5 31h3v3H5z" />
+                <path fill="#ffffff" d="M6 32h1v1H6z" />
+              </g>
+            </g>
+          )}
+        </svg>
+        <span className="font-mono text-[10px]">
+          {ignited ? "Seal Chidori" : "Unleash Chidori"}
+        </span>
+      </button>
+
+      <audio src="/chidori.mp3" ref={chidoriAudio} preload="none" />
+    </div>
+  );
+}

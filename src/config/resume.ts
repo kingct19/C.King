@@ -1,7 +1,9 @@
 import { SOZO } from "@/config/site";
 
+export const RESUME_HEADLINE = "Forward Deployed Engineer · Software Engineer & Founder";
+
 export const RESUME_SUMMARY =
-  "Software engineer in Kansas City, Missouri with a B.S. and M.S. in Computer Science (AI concentration). I founded Sozo Tech Enterprise and lead product, architecture, and a team of 3 — shipping The Sozo CRM to production and building AnglerIQ, an AI-powered mobile fish finder. Full-stack across React, Next.js, React Native, and PostgreSQL, with computer vision and agentic engineering in the day-to-day. Before Sozo I owned technology at Elevate Solar, including the public site and an internal facial-recognition tool.";
+  "Forward Deployed Engineer and founder in Kansas City, Missouri with a B.S. and M.S. in Computer Science (AI concentration). Strong technical aptitude and problem-solving ability: I work directly with clients, translate ambiguous business problems into solution design, and own technical delivery from discovery through prototype, pilot, and deployment. Hands-on with Python, JavaScript, TypeScript, SQL, APIs, npm, Docker, Linux, CI/CD, and databases. I use LLMs and AI-assisted development for coding, debugging, troubleshooting, research, technical documentation, and automation. Shipped The Sozo CRM and AnglerIQ; comfortable with consulting, solution engineering, product engineering, presentations, and client walkthroughs.";
 
 export const RESUME_EXPERIENCE = [
   {
@@ -9,21 +11,25 @@ export const RESUME_EXPERIENCE = [
     title: "Founder & Lead Software Engineer",
     company: SOZO.name,
     href: SOZO.url,
-    period: { start: "01.2025" },
+    location: "Kansas City, Missouri, USA",
+    period: { start: "01.2026" },
     type: "Full-time",
     bullets: [
-      "Founded an investor-backed software company; own product, architecture, and engineering across web and mobile.",
-      "Shipped The Sozo CRM from a blank repo to production at thesozocrm.com — dashboards, records, auth, APIs, and PostgreSQL on Next.js and TypeScript.",
-      "Leading AnglerIQ, an AI-native fish finder: React Native architecture, computer vision, and location-aware features built for field use.",
-      "Run a team of 3 developers — roadmap, sprint planning, code review, and releases — while taking on client web and mobile builds.",
+      "Own consulting-style discovery and solution engineering with clients: map business systems, workflows, and operating constraints, then turn them into solution design, implementation plans, and technical delivery tasks.",
+      "Shipped The Sozo CRM — a customer-facing business system — from a blank repo to production (thesozocrm.com): dashboards, analytics, auth, REST APIs, integrations, PostgreSQL, MongoDB, TypeScript, JavaScript, npm-based tooling, Next.js, Docker, Linux environments, and CI/CD (GitHub Actions / Vercel) with build systems and release readiness.",
+      "Lead product engineering on AnglerIQ, an AI-native mobile product: React Native, computer vision, APIs, data flows, and LLM-powered agentic workflows; prototype demos, proof-of-concepts, and automation for field use.",
+      "Use LLMs daily to accelerate coding, debugging, research, workflow design, and solution prototyping; write technical documentation, process maps, presentations, and walkthrough materials for clients and the internal team.",
+      "Troubleshoot issues across applications, APIs, data flows, integrations, containers, prompts, and user workflows; apply security basics and credential handling for production-readiness.",
+      "Run a team of 3 developers — roadmap, sprint planning, code review, deployment coordination, testing, and artifact handling — while shipping 2 production products and client automation.",
     ],
     skills: [
+      "LLMs",
+      "Solution design",
       "TypeScript",
-      "Next.js",
-      "React Native",
-      "PostgreSQL",
-      "AI/ML",
-      "Team Leadership",
+      "Python",
+      "Docker",
+      "CI/CD",
+      "APIs",
     ],
   },
   {
@@ -31,15 +37,22 @@ export const RESUME_EXPERIENCE = [
     title: "Head of Technology",
     company: "Elevate Solar",
     href: "https://www.elevate-solar.com",
-    period: { start: "01.2024", end: "12.2024" },
+    location: "United States",
+    period: { start: "01.2025", end: "01.2026" },
     type: "Full-time",
     bullets: [
-      "Owned technology for a solar company while finishing a B.S. in Computer Science — site, internal tools, and infrastructure.",
-      "Designed, built, and launched elevate-solar.com as a conversion-focused marketing site for local solar sales.",
-      "Built an internal facial-recognition application with computer vision for company operations.",
-      "Set up and maintained the company's software tooling, hosting, and delivery pipeline.",
+      "Full-time technical delivery for a solar business: worked with operators to understand goals, pain points, and business systems, then built working software instead of slideware.",
+      "Designed, built, and launched elevate-solar.com as an internal-tools-adjacent, conversion-focused site — presentations of the offer, analytics-ready structure, and automation for lead capture.",
+      "Built an internal facial-recognition application with computer vision; documented the solution design, process maps, and implementation notes for non-technical staff.",
+      "Owned Linux / Docker-friendly tooling, CI/CD-style release processes, and troubleshooting across the site, internal tools, integrations, and hosting; applied security basics for credentials and production-readiness.",
     ],
-    skills: ["Next.js", "TypeScript", "Computer Vision", "Technical Leadership"],
+    skills: [
+      "Internal tools",
+      "Automation",
+      "Troubleshooting",
+      "Technical documentation",
+      "Next.js",
+    ],
   },
 ] as const;
 
@@ -48,20 +61,20 @@ export const RESUME_EDUCATION = [
     id: "edu-ms",
     title: "M.S. Computer Science — AI Concentration",
     school: "Texas A&M University–Commerce",
-    period: { start: "08.2025", end: "05.2026" },
+    period: { start: "01.2024", end: "05.2026" },
     bullets: [
-      "Graduate coursework in artificial intelligence, machine learning, and intelligent systems.",
-      "Applying AI concepts to capstone and product-oriented research alongside shipped products at Sozo.",
+      "Graduate research in artificial intelligence, machine learning, and intelligent systems; Jupyter notebooks, data exploration, analytics, and LLM-powered experiments.",
+      "Apply research to product engineering: retrieval workflows, embeddings, and applied AI prototypes alongside shipped Sozo products.",
     ],
   },
   {
     id: "edu-bs",
     title: "B.S. Computer Science — AI Concentration",
     school: "Texas A&M University–Commerce",
-    period: { start: "08.2021", end: "05.2025" },
+    period: { start: "08.2019", end: "12.2023" },
     bullets: [
-      "AI-focused undergraduate curriculum completed while competing as a Division I student-athlete (sprints and horizontal jumps).",
-      "Southland Conference Spring Commissioner's Honor Roll as a Computer Science major.",
+      "AI-focused undergraduate curriculum (Python, JavaScript, SQL, algorithms) completed while competing as a Division I student-athlete — ownership, reliability, and learning speed under pressure.",
+      "Southland Conference Spring Commissioner's Honor Roll; capstone-scale delivery including the ETAMU All-in-One campus app (91+ commits, demo, and notebook).",
     ],
   },
 ] as const;
@@ -69,71 +82,107 @@ export const RESUME_EDUCATION = [
 export const RESUME_PROJECTS = [
   {
     name: "AnglerIQ",
-    period: "2025 — present",
+    period: "2026 — present",
+    href: "https://www.angleriqapp.com",
     caseStudy: "/projects/angleriq",
     summary:
-      "AI-first mobile fish finder — on-device intelligence and location-aware features that help anglers read fish patterns in the field.",
+      "Your AI Co-Angler — AI-ranked fishing zones, bite scores, tournaments, species rankings, and a private catch log.",
     bullets: [
-      "Leading product direction and mobile architecture for an AI-native outdoor app on React Native and TypeScript.",
-      "Computer vision and location features designed for real use on the water, not a demo environment.",
-      "Coordinating a cross-functional team through design, build, and release.",
+      "Solution design and technical delivery for an AI-native outdoor app: React Native, TypeScript, Claude AI, APIs, and location intelligence.",
+      "Prototype and ship LLM-powered zone rankings, bite forecasts, and tournament leaderboards with private user catch coordinates.",
     ],
-    tags: ["React Native", "TypeScript", "Computer Vision", "AI/ML", "Mobile"],
+    tags: ["Claude AI", "React Native", "TypeScript", "Next.js", "Mobile"],
+  },
+  {
+    name: "Studio Sozo",
+    period: "2026 — present",
+    href: "https://studiosozo.vercel.app",
+    caseStudy: "/projects/studio-sozo",
+    summary:
+      "Custom software studio platform building 100% client-owned web apps, bespoke CRMs, mobile apps, and AI workflow automations.",
+    bullets: [
+      "Full-stack platform and client delivery engine for custom CRMs, Stripe/QuickBooks/Twilio webhook integrations, and AI automation pipelines.",
+      "Delivered regional platforms including Home Ranger Services (homerangerservices.com), Splash & Dash (splashanddashrents.com), and Serene Dreams.",
+    ],
+    tags: ["Next.js", "TypeScript", "PostgreSQL", "AI Automation", "Webhooks"],
   },
   {
     name: "The Sozo CRM",
-    period: "2024 — present",
+    period: "2025 — present",
     href: SOZO.crmUrl,
     caseStudy: "/projects/the-sozo-crm",
     summary:
-      "Sozo Tech Enterprise's first product — a full-stack CRM shipped from zero to a live SaaS at thesozocrm.com.",
+      "Full-stack solar CRM and business system shipped from zero to production — dashboards, analytics, APIs, and sales pipeline automation.",
     bullets: [
-      "Owned architecture, build, and launch: Next.js, TypeScript, PostgreSQL, auth, and deployment.",
-      "Sales and client workflows — dashboards, records, and follow-up — rather than a generic admin shell.",
-      "Became the foundation for Sozo's later products and client software.",
+      "Product engineering end to end: Next.js, TypeScript, PostgreSQL, REST APIs, role-based access control, and CI/CD on Vercel and GitHub Actions.",
+      "Process maps and technical documentation for sales and installer workflows from lead intake through close.",
     ],
-    tags: ["Next.js", "TypeScript", "PostgreSQL", "SaaS", "CRM"],
-  },
-  {
-    name: "Family Tracking & Management App",
-    period: "2024 — 2025",
-    href: "https://github.com/kingct19/Family-Tracking-and-Management-App",
-    caseStudy: "/projects/family-tracking",
-    summary:
-      "Full-stack family locator and safety platform — real-time location, tasks, rewards, and messaging.",
-    bullets: [
-      "Role-based access so the right people see the right location and task data.",
-      "Landing experience plus a mobile-responsive product UI built for everyday family use.",
-      "React frontend with a Node.js and PostgreSQL backend.",
-    ],
-    tags: ["React", "TypeScript", "Node.js", "PostgreSQL"],
-  },
-  {
-    name: "ETAMU All-in-One",
-    period: "Campus app",
-    href: "https://github.com/kingct19/ETAMU-All-in-One",
-    caseStudy: "/projects/etamu-all-in-one",
-    summary:
-      "Cross-platform campus app for Texas A&M University–Commerce — student resources and workflows in one Flutter app.",
-    bullets: [
-      "Single Flutter/Dart codebase shipping to iOS and Android.",
-      "Centralized campus tools aimed at everyday student workflows.",
-      "Capstone-scale delivery: 91+ commits, demo video, and notebook in the repo.",
-    ],
-    tags: ["Flutter", "Dart", "iOS", "Android"],
+    tags: ["Next.js", "TypeScript", "PostgreSQL", "CRM", "CI/CD"],
   },
   {
     name: "elevate-solar.com",
-    period: "2024",
+    period: "2025 — 2026",
     href: "https://www.elevate-solar.com",
     caseStudy: "/projects/elevate-solar",
     summary:
-      "Marketing and lead-generation site for Elevate Solar, built as Head of Technology.",
+      "Lead-generation site and internal-tools work for Elevate Solar — analytics, automation, and computer-vision internal tooling.",
     bullets: [
-      "Designed and launched the public site — clear story, fast load, mobile-ready.",
-      "Sales-oriented structure and calls to action for local solar conversations.",
-      "Delivered next to internal tools and a computer-vision facial-recognition app.",
+      "Owned digital transformation as Head of Technology: public lead-gen platform, internal tools, and a computer-vision facial recognition app.",
     ],
-    tags: ["Next.js", "TypeScript", "Web"],
+    tags: ["Next.js", "TypeScript", "Computer Vision", "Internal tools"],
   },
 ] as const;
+
+/** Resume-only stack — includes Jobscan phrases that match real work or active learning. */
+export const RESUME_STACK: { label: string; items: string[] }[] = [
+  {
+    label: "Languages",
+    items: ["TypeScript", "JavaScript", "Python", "SQL", "Dart"],
+  },
+  {
+    label: "Frontend & tooling",
+    items: ["React", "Next.js", "React Native", "npm", "Flutter", "Tailwind CSS"],
+  },
+  {
+    label: "Backend, data & APIs",
+    items: ["Node.js", "APIs", "PostgreSQL", "MongoDB", "SQL", "Firebase", "Supabase"],
+  },
+  {
+    label: "AI, LLMs & automation",
+    items: [
+      "LLMs",
+      "AI agents",
+      "Automation",
+      "Jupyter",
+      "Computer Vision",
+      "Cursor",
+    ],
+  },
+  {
+    label: "Delivery & environments",
+    items: [
+      "Docker",
+      "Linux",
+      "CI/CD",
+      "Build systems",
+      "GitHub Actions",
+      "Vercel",
+      "Security basics",
+    ],
+  },
+  {
+    label: "Learning next",
+    items: [
+      "Rust",
+      "WASM",
+      "Redis",
+      "Qdrant",
+      "Neo4j",
+      "TerminusDB",
+      "RAG systems",
+      "Embeddings",
+      "Vector databases",
+      "Graph databases",
+    ],
+  },
+];

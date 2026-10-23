@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 1600" width="220" height="1600" preserveAspectRatio="none">
+  <!-- Deep sumi-ink charcoal spine background -->
+  <rect width="220" height="1600" fill="#12100f" />
+
+  <!-- Top and bottom gold/crimson bands -->
+  <rect x="18" y="54" width="184" height="6" fill="#b91c1c" />
+  <rect x="18" y="68" width="184" height="3" fill="#c9a24d" />
+
+  <rect x="18" y="1095" width="184" height="4" fill="#b91c1c" />
+  <rect x="18" y="1518" width="184" height="3" fill="#c9a24d" />
+  <rect x="18" y="1530" width="184" height="6" fill="#b91c1c" />
+
+  <!-- Five Interlocking Rings emblem at top of spine -->
+  <g transform="translate(110, 155)" fill="none" stroke-width="5">
+    <circle cx="0" cy="-32" r="22" stroke="#f4efe6" />
+    <circle cx="0" cy="-14" r="22" stroke="#c9a24d" />
+    <circle cx="0" cy="4" r="22" stroke="#b91c1c" />
+    <circle cx="0" cy="22" r="22" stroke="#c9a24d" />
+    <circle cx="0" cy="40" r="22" stroke="#f4efe6" />
+  </g>
+
+  <!-- Vertical Title: THE BOOK OF FIVE RINGS -->
+  <g transform="translate(86, 655) rotate(90)">
+    <text
+      x="0"
+      y="0"
+      text-anchor="middle"
+      fill="#f4efe6"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="56"
+      font-weight="700"
+      letter-spacing="7"
+    >
+      THE BOOK OF FIVE RINGS
+    </text>
+  </g>
+
+  <!-- Vertical Author: MIYAMOTO MUSASHI -->
+  <g transform="translate(96, 1305) rotate(90)">
+    <text
+      x="0"
+      y="0"
+      text-anchor="middle"
+      fill="#c9a24d"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="32"
+      font-weight="600"
+      letter-spacing="5"
+    >
+      MIYAMOTO MUSASHI
+    </text>
+  </g>
+</svg>

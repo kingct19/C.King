@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 1024" width="140" height="1024" preserveAspectRatio="none">
+  <rect width="140" height="1024" fill="#050505" />
+
+  <rect x="0" y="0" width="140" height="108" fill="#e1241e" />
+
+  <g transform="translate(56, 54) rotate(90)">
+    <text
+      x="0"
+      y="0"
+      text-anchor="middle"
+      fill="#e8dec8"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="16"
+      font-weight="600"
+      letter-spacing="1.5"
+    >
+      MUSASHI&#8217;S
+    </text>
+  </g>
+
+  <g transform="translate(54, 455) rotate(90)">
+    <text
+      x="0"
+      y="0"
+      text-anchor="middle"
+      fill="#dfd5bd"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="38"
+      font-weight="400"
+      letter-spacing="4"
+    >
+      BOOK OF FIVE RINGS
+    </text>
+  </g>
+
+  <g transform="translate(58, 825) rotate(90)">
+    <text
+      x="0"
+      y="0"
+      text-anchor="middle"
+      fill="#e1241e"
+      font-family="Georgia, 'Times New Roman', serif"
+      font-size="22"
+      font-weight="600"
+      letter-spacing="3"
+    >
+      KAUFMAN
+    </text>
+  </g>
+
+  <rect x="18" y="950" width="104" height="36" rx="4" fill="#e1241e" />
+  <text
+    x="70"
+    y="974"
+    text-anchor="middle"
+    fill="#f5efe2"
+    font-family="ui-sans-serif, system-ui, -apple-system, sans-serif"
+    font-size="16"
+    font-weight="700"
+    letter-spacing="1.5"
+  >
+    TUTTLE
+  </text>
+</svg>

@@ -2,18 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowUpRightIcon } from "lucide-react";
 
-import { BorderGradientLink } from "@/components/border-gradient";
-import { ScrollTop } from "@/components/site/scroll-top";
-import { SiteFooter } from "@/components/site/site-footer";
-import { SiteHeader } from "@/components/site/site-header";
+import { Footer } from "@/components/landing/footer";
+import { SideNote } from "@/components/shared/side-note";
 import {
-  Panel,
-  PanelContent,
-  PanelHeader,
-  PanelTitle,
-  SectionSeparator,
-} from "@/components/site/panel";
-import { SpotlightCard } from "@/components/spotlight-card";
+  DottedWorldMapIcon,
+  KeyOwnershipCutoutIcon,
+  ModelPickerIcon,
+  RolodexIcon,
+} from "@/components/showcase/component-icons";
 import { SERVICES_PAGE } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -33,180 +29,137 @@ export const metadata: Metadata = {
   },
 };
 
+const capabilityIconMap: Record<string, React.ComponentType<{ className?: string; size?: number }>> = {
+  "01": KeyOwnershipCutoutIcon,
+  "02": RolodexIcon,
+  "03": ModelPickerIcon,
+  "04": DottedWorldMapIcon,
+};
+
 export default function ServicesPage() {
-  const { hero, offers, carePlan, caseStudies, faq, closingCta } = SERVICES_PAGE;
+  const { hero, capabilities } = SERVICES_PAGE;
 
   return (
-    <div className="max-w-screen overflow-x-clip">
-      <SiteHeader />
+    <>
+      <div className="relative flex min-h-dvh flex-col gap-y-6 overflow-x-clip bg-background pt-14 pb-12 xl:overflow-x-visible">
+        {/* Compact Studio Sozo Intro & Preview */}
+        <section className="relative border-t border-dashed pt-6">
+          <SideNote side="left">{"Own your code,\nditch SaaS rent"}</SideNote>
 
-      <main id="main-content" className="mx-auto w-full min-w-0 px-4 md:max-w-3xl">
-        {/* Hero */}
-        <section className="border-x border-line">
-          <div className="relative p-4">
-            <div className="relative aspect-[16/10] w-full overflow-hidden sm:aspect-[569/362]">
-              <Image
-                src="/images/sozo-banner.png"
-                alt="Sozo Tech Enterprise"
-                fill
-                priority
-                className="object-cover object-center"
-              />
+          <div className="px-6 mb-4 flex items-center gap-2">
+            <span className="font-mono text-[11px] tracking-widest text-muted-foreground uppercase">
+              {`// ${hero.badge}`}
+            </span>
+          </div>
+
+          <h1 className="section-heading text-balance">{hero.headline}</h1>
+
+          <div className="px-6 pt-4">
+            <p className="max-w-prose text-sm leading-relaxed text-muted-foreground">
+              {hero.subhead}
+            </p>
+
+            <div className="mt-4 flex flex-wrap items-center gap-2.5">
+              <a
+                href={hero.primaryCta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="micro-press inline-flex h-9 items-center gap-1.5 rounded-md bg-foreground px-4 text-xs font-medium text-background transition-opacity hover:opacity-90"
+              >
+                {hero.primaryCta.label}
+                <ArrowUpRightIcon className="size-3.5" />
+              </a>
+              <a
+                href={hero.secondaryCta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="micro-press inline-flex h-9 items-center gap-1.5 rounded-md border border-dashed bg-background px-4 font-mono text-xs text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
+              >
+                {hero.secondaryCta.label}
+                <ArrowUpRightIcon className="size-3.5" />
+              </a>
             </div>
           </div>
 
-          <div className="screen-line-top px-4 pb-6">
-            <h1 className="text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
-              {hero.headline}
-            </h1>
-            <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">
-              {hero.subhead}
-            </p>
-            <BorderGradientLink
-              href={hero.cta.href}
+          {/* Live Studio Sozo Preview Card */}
+          <div className="px-6 pt-6">
+            <a
+              href={hero.primaryCta.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex h-9 w-fit items-center rounded-full bg-brand-blue px-4 text-sm font-medium text-white"
+              className="group relative block overflow-hidden rounded-lg border border-dashed bg-muted/20 transition-colors hover:border-foreground/30"
             >
-              {hero.cta.label}
-            </BorderGradientLink>
+              <div className="relative aspect-video w-full overflow-hidden">
+                <Image
+                  src="/images/projects/studio-sozo.webp"
+                  alt="Studio Sozo — Custom Software Development, CRM & AI Automation"
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 720px, 100vw"
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.015]"
+                />
+              </div>
+              <div className="flex items-center justify-between border-t border-dashed bg-background/90 px-4 py-3">
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-foreground group-hover:text-primary">
+                    Studio Sozo — Ditched Monthly SaaS Rent. Own It Outright.
+                  </p>
+                  <p className="truncate font-mono text-xs text-muted-foreground">
+                    studiosozo.vercel.app/services
+                  </p>
+                </div>
+                <span className="inline-flex shrink-0 items-center gap-1 font-mono text-xs text-muted-foreground group-hover:text-primary">
+                  Visit site
+                  <ArrowUpRightIcon className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </span>
+              </div>
+            </a>
           </div>
         </section>
 
-        <SectionSeparator />
-
-        {/* Offers */}
-        <Panel>
-          <PanelHeader>
-            <PanelTitle>What we build</PanelTitle>
-          </PanelHeader>
-          <PanelContent>
-            <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-              {offers.map((offer) => (
-                <li key={offer.title} className="min-w-0">
-                  <SpotlightCard
-                    spotlightColor="rgba(0, 149, 246, 0.15)"
-                    hoverScale={1.01}
-                    className="h-full w-full rounded-lg shadow-none"
-                  >
-                    <div className="flex h-full flex-col p-4">
-                      <h3 className="font-medium">{offer.title}</h3>
-                      <p className="mt-1 font-mono text-sm text-brand-blue">{offer.price}</p>
-                      <p className="mt-1 text-xs text-muted-foreground">{offer.audience}</p>
-                      <ul className="mt-3 flex flex-col gap-1.5">
-                        {offer.points.map((point) => (
-                          <li
-                            key={point}
-                            className="text-sm leading-relaxed text-muted-foreground before:mr-2 before:text-foreground/40 before:content-['·']"
-                          >
-                            {point}
-                          </li>
-                        ))}
-                      </ul>
+        {/* 4-Card Capability Snapshot with PaperCut Sticker Icons */}
+        <section className="relative border-t border-dashed pt-6">
+          <SideNote side="right">{"Zero per-seat\nSaaS tax"}</SideNote>
+          <h2 className="section-heading mb-4">What we build at Studio Sozo</h2>
+          <div className="grid gap-3 px-6 sm:grid-cols-2">
+            {capabilities.map((item) => {
+              const Icon = capabilityIconMap[item.code] ?? KeyOwnershipCutoutIcon;
+              return (
+                <a
+                  key={item.code}
+                  href={hero.primaryCta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex flex-col justify-between border border-dashed bg-background p-4 transition-colors hover:bg-muted/15"
+                >
+                  <div className="blueprint-bg pointer-events-none absolute inset-0 opacity-40 transition-opacity group-hover:opacity-100" />
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between gap-2">
+                      <Icon
+                        size={38}
+                        className="shrink-0 micro-transition motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:-rotate-6"
+                      />
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-mono text-[11px] text-muted-foreground">
+                          {item.code}
+                        </span>
+                        <ArrowUpRightIcon className="size-3.5 text-muted-foreground/40 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                      </div>
                     </div>
-                  </SpotlightCard>
-                </li>
-              ))}
-            </ul>
-          </PanelContent>
-        </Panel>
-
-        <SectionSeparator />
-
-        {/* Care Plan */}
-        <Panel>
-          <PanelContent>
-            <div className="rounded-lg border border-line bg-muted/30 px-4 py-5 sm:px-6">
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h2 className="text-lg font-semibold tracking-tight">{carePlan.title}</h2>
-                <p className="font-mono text-sm text-brand-blue">{carePlan.price}</p>
-              </div>
-              <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
-                {carePlan.description}
-              </p>
-            </div>
-          </PanelContent>
-        </Panel>
-
-        <SectionSeparator />
-
-        {/* Case studies */}
-        <Panel>
-          <PanelHeader>
-            <PanelTitle>Selected work</PanelTitle>
-          </PanelHeader>
-          <PanelContent className="flex flex-col gap-4">
-            {caseStudies.map((study) => (
-              <a
-                key={study.title}
-                href={study.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block rounded-lg border border-line p-4 transition-colors hover:border-foreground/20"
-              >
-                <p className="font-mono text-xs tracking-wide text-muted-foreground uppercase">
-                  {study.framing}
-                </p>
-                <h3 className="mt-1 flex items-center gap-1.5 font-medium">
-                  {study.title}
-                  <ArrowUpRightIcon className="size-3.5 text-muted-foreground transition-colors group-hover:text-foreground" />
-                </h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                  {study.summary}
-                </p>
-              </a>
-            ))}
-          </PanelContent>
-        </Panel>
-
-        <SectionSeparator />
-
-        {/* FAQ */}
-        <Panel>
-          <PanelHeader>
-            <PanelTitle>FAQ</PanelTitle>
-          </PanelHeader>
-          <PanelContent>
-            <dl className="flex flex-col gap-5">
-              {faq.map((item) => (
-                <div key={item.q}>
-                  <dt className="font-medium">{item.q}</dt>
-                  <dd className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{item.a}</dd>
-                </div>
-              ))}
-            </dl>
-          </PanelContent>
-        </Panel>
-
-        <SectionSeparator />
-
-        {/* Closing CTA */}
-        <Panel>
-          <PanelContent className="flex flex-col items-start gap-3 py-8">
-            <h2 className="text-xl font-semibold tracking-tight text-balance sm:text-2xl">
-              {closingCta.headline}
-            </h2>
-            <p className="max-w-prose text-sm text-muted-foreground">{closingCta.subhead}</p>
-            <BorderGradientLink
-              href={closingCta.cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 inline-flex h-9 w-fit items-center rounded-full bg-brand-blue px-4 text-sm font-medium text-white"
-            >
-              {closingCta.cta.label}
-            </BorderGradientLink>
-          </PanelContent>
-        </Panel>
-
-        <div className="h-4 border-x border-line" />
-      </main>
-
-      <div className="mx-auto w-full min-w-0 px-4 md:max-w-3xl">
-        <SectionSeparator />
-        <SiteFooter />
+                    <h3 className="mt-2.5 text-sm font-semibold group-hover:text-primary">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
       </div>
-
-      <ScrollTop />
-    </div>
+      <Footer />
+    </>
   );
 }

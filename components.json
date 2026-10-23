@@ -28,6 +28,7 @@
       "headers": {
         "Authorization": "Bearer ${ACETERNITY_API_KEY}"
       }
-    }
+    },
+    "@stealth": "https://www.stealth.pm/r/{name}.json"
   }
 }

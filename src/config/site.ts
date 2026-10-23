@@ -1,9 +1,6 @@
 import type { ExperienceItemType } from "@/components/work-experience";
-
-/**
- * All site content lives here — edit this file to update the page
- * without touching the section components.
- */
+import { socialsConfig } from "@/config/socials";
+import type { AboutGreetings, AboutItem, FooterConfig, PortfolioConfig } from "@/config/types";
 
 export const SOZO = {
   name: "Sozo Tech Enterprise",
@@ -47,7 +44,7 @@ export const OVERVIEW = {
   ],
   location: "Kansas City, Missouri, USA",
   timeZone: "America/Chicago",
-  email: "chandler@thesozotech.com",
+  email: "chandler@studiosozo.dev",
   phone: "+1 (903) 424-4805",
   website: "chandlerking.dev",
   pronouns: "he/him",
@@ -70,7 +67,7 @@ export const SOCIAL_LINKS = [
   { name: "GitHub", href: "https://github.com/kingct19" },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/chandler-king-052861240" },
   { name: "Instagram", href: "https://www.instagram.com/chandler.t.king/" },
-  { name: "Mail", href: "mailto:chandler@thesozotech.com" },
+  { name: "Mail", href: "mailto:chandler@studiosozo.dev" },
 ] as const;
 
 export const ABOUT_BULLETS = [
@@ -122,24 +119,18 @@ export type ProjectItem = {
   isExpanded?: boolean;
 };
 
-/** GitHub repo pin — metadata is enriched from the API at build time. */
 export type PinnedGitHubProject = {
   source: "github";
   repo: string;
   isExpanded?: boolean;
 };
 
-/** Non-GitHub project — all fields are authored here. */
 export type PinnedCustomProject = {
   source: "custom";
 } & ProjectItem;
 
 export type PinnedProject = PinnedGitHubProject | PinnedCustomProject;
 
-/**
- * Projects section order and content. GitHub pins are enriched live;
- * custom pins are shown as-is. Reorder or edit this list anytime.
- */
 export const PINNED_PROJECTS: PinnedProject[] = [
   {
     source: "custom",
@@ -153,7 +144,7 @@ export const PINNED_PROJECTS: PinnedProject[] = [
       "Computer vision and location-aware features tuned for field use",
     ],
     tags: ["React Native", "AI/ML", "Computer Vision", "TypeScript", "Mobile"],
-    previewImage: "/images/angleriq-preview.png",
+    previewImage: "/rixel.png",
     isExpanded: true,
   },
   {
@@ -169,7 +160,7 @@ export const PINNED_PROJECTS: PinnedProject[] = [
     ],
     tags: ["Next.js", "TypeScript", "PostgreSQL", "CRM", "SaaS"],
     href: SOZO.crmUrl,
-    previewImage: "/images/the-sozo-crm-preview.png",
+    previewImage: "/gridly.png",
   },
   {
     source: "custom",
@@ -184,7 +175,7 @@ export const PINNED_PROJECTS: PinnedProject[] = [
     ],
     tags: ["Next.js", "Web Development", "Solar", "TypeScript"],
     href: "https://www.elevate-solar.com",
-    previewImage: "/images/elevate-solar-preview.png",
+    previewImage: "/root.png",
   },
   {
     source: "custom",
@@ -199,16 +190,12 @@ export const PINNED_PROJECTS: PinnedProject[] = [
     ],
     tags: ["TypeScript", "React", "Node.js", "PostgreSQL", "Mobile"],
     href: "https://github.com/kingct19/Family-Tracking-and-Management-App",
-    previewImage: "/images/family-tracking-preview.png",
+    previewImage: "/zeno.png",
   },
   { source: "github", repo: "ETAMU-All-in-One" },
   { source: "github", repo: "C.King" },
 ];
 
-/**
- * Per-repo overrides for GitHub pins. Keyed by repo name; any
- * ProjectItem field can be overridden (title, description, bullets, etc.).
- */
 export const PROJECT_OVERRIDES: Record<string, Partial<ProjectItem>> = {
   "C.King": {
     title: "chandlerking.dev",
@@ -232,7 +219,7 @@ export const PROJECT_OVERRIDES: Record<string, Partial<ProjectItem>> = {
     ],
     tags: ["Flutter", "Dart", "Mobile", "iOS", "Android"],
     href: "https://github.com/kingct19/ETAMU-All-in-One",
-    previewImage: "/images/etamu-all-in-one-preview.png",
+    previewImage: "/aura.png",
   },
 };
 
@@ -246,7 +233,7 @@ export const EXPERIENCES: ExperienceItemType[] = [
       {
         id: "sozo-founder",
         title: "Founder & Lead Software Engineer",
-        employmentPeriod: { start: "01.2025" },
+        employmentPeriod: { start: "01.2026" },
         employmentType: "Full-time",
         description:
           "- Founded an investor-backed software company; lead product, architecture, and engineering across web and mobile.\n- Shipped The Sozo CRM (thesozocrm.com) from concept to production with Next.js, TypeScript, and PostgreSQL.\n- Building AnglerIQ, an AI-powered fish finder mobile app, with React Native and computer vision.\n- Manage a team of 3 developers — roadmap, sprint planning, code review, and releases.",
@@ -271,10 +258,10 @@ export const EXPERIENCES: ExperienceItemType[] = [
       {
         id: "solar-head",
         title: "Head of Technology",
-        employmentPeriod: { start: "01.2024", end: "12.2024" },
+        employmentPeriod: { start: "01.2025", end: "01.2026" },
         employmentType: "Full-time",
         description:
-          "- Owned technology for a solar energy company while completing my B.S. in Computer Science.\n- Designed, built, and launched the company website (elevate-solar.com) to support sales and lead generation.\n- Built an internal facial recognition application using computer vision.\n- Managed the company's software tooling and infrastructure.",
+          "- Owned technology for a solar energy company while completing my M.S. in Computer Science.\n- Designed, built, and launched the company website (elevate-solar.com) to support sales and lead generation.\n- Built an internal facial recognition application using computer vision.\n- Managed the company's software tooling and infrastructure.",
         skills: [
           "Full-Stack Development",
           "Next.js",
@@ -294,7 +281,7 @@ export const EXPERIENCES: ExperienceItemType[] = [
       {
         id: "edu-ms",
         title: "M.S. Computer Science — AI Concentration",
-        employmentPeriod: { start: "08.2025", end: "05.2026" },
+        employmentPeriod: { start: "01.2024", end: "05.2026" },
         employmentType: "Education",
         description:
           "- Graduate coursework focused on artificial intelligence, machine learning, and intelligent systems.\n- Applied AI concepts to capstone and product-oriented research.",
@@ -303,7 +290,7 @@ export const EXPERIENCES: ExperienceItemType[] = [
       {
         id: "edu-bs",
         title: "B.S. Computer Science — AI Concentration · Student-Athlete",
-        employmentPeriod: { start: "08.2021", end: "05.2025" },
+        employmentPeriod: { start: "08.2019", end: "12.2023" },
         employmentType: "Education",
         description:
           "- Undergraduate CS degree with an AI-focused curriculum.\n- Competed as a collegiate student-athlete while maintaining academic honors.",
@@ -363,98 +350,54 @@ export const WORK_WITH_SOZO = {
   cta: { label: "Visit thesozocrm.com", href: SOZO.crmUrl },
 };
 
-export const CALENDLY_URL = "https://calendly.com/chandler-thesozotech/sozo-tech";
+export const CALENDLY_URL = "https://calendar.app.google/nqkE4R2mjum2PSPP9";
 
 export const SERVICES_PAGE = {
   meta: {
-    title: "Services",
+    title: "Studio Sozo · Services",
     description:
-      "Sozo Tech builds websites and apps for Kansas City businesses and startups. Launch sites, growth builds, and MVP sprints — book a free 30-minute scoping call.",
+      "I run Studio Sozo — a software studio that designs and builds custom software, CRMs, web & mobile apps, and AI automations that businesses own 100% outright with zero per-seat SaaS tax.",
   },
   hero: {
-    headline: "Websites and apps that bring Kansas City businesses customers",
+    badge: "STUDIO SOZO",
+    headline: "I run a software startup that helps businesses own their software outright.",
     subhead:
-      "Plain-English builds for local owners and founders — from a launch-ready site to a first product customers can use.",
-    cta: { label: "Book a free 30-minute scoping call", href: CALENDLY_URL },
+      "Most growing businesses aren't held back by effort — they're held back by disconnected tools and monthly SaaS rent. At Studio Sozo, we design and build unified software systems, custom CRMs, web & mobile apps, and AI automations tailored to how your team actually operates — with 100% code ownership and zero per-seat SaaS tax.",
+    primaryCta: {
+      label: "Explore Studio Sozo Services",
+      href: "https://studiosozo.vercel.app/services",
+    },
+    secondaryCta: {
+      label: "Book a 30-min scoping call",
+      href: CALENDLY_URL,
+    },
   },
-  offers: [
+  capabilities: [
     {
-      title: "Launch Site",
-      price: "from $3,500",
-      audience: "For small businesses",
-      points: [
-        "5-page mobile-first site",
-        "Contact or booking ready",
-        "Local SEO basics",
-        "About 2-week delivery",
-      ],
+      code: "01",
+      title: "Custom Software Development",
+      description:
+        "Proprietary software systems tailored to your exact workflows, pricing rules, and team permissions — no rigid templates or per-user licensing fees.",
     },
     {
-      title: "Growth Build",
-      price: "from $8,500",
-      audience: "For established businesses",
-      points: [
-        "Custom site or web app",
-        "Integrations (CRM, payments, scheduling)",
-        "Analytics so you can see what's working",
-      ],
+      code: "02",
+      title: "CRM & Business Systems",
+      description:
+        "Custom CRMs and operational back-offices connecting lead intake, quoting, dispatch, field execution, and customer communication in one pipeline.",
     },
     {
-      title: "MVP Sprint",
-      price: "from $20,000",
-      audience: "For startups",
-      points: [
-        "Clickable product in 4–6 weeks",
-        "Web or mobile",
-        "AI features where they add real value",
-      ],
+      code: "03",
+      title: "AI & Workflow Automation",
+      description:
+        "Production-grade AI workflows and deterministic automations that read documents, qualify inbound leads, and trigger actions across your stack.",
+    },
+    {
+      code: "04",
+      title: "Web & Mobile Applications",
+      description:
+        "Fast, conversion-focused web platforms, booking engines, and iOS/Android field apps engineered for real-world reliability.",
     },
   ],
-  carePlan: {
-    title: "Care Plan",
-    price: "$150–400/mo",
-    description:
-      "Hosting, updates, small edits, and a short monthly report so your site or app stays current without you chasing a developer.",
-  },
-  caseStudies: [
-    {
-      title: "elevate-solar.com",
-      framing: "Built to generate leads for a local business",
-      summary:
-        "Marketing site for Elevate Solar — fast, clear, and aimed at turning visitors into sales conversations.",
-      href: "https://www.elevate-solar.com",
-    },
-    {
-      title: "The Sozo CRM",
-      framing: "We ship real products, not just sites",
-      summary:
-        "Customer relationship platform built from zero to production — the kind of product work we bring to founders and growing teams.",
-      href: SOZO.crmUrl,
-    },
-  ],
-  faq: [
-    {
-      q: "How long does a project take?",
-      a: "Launch Site is typically about two weeks. Growth Builds vary with scope. MVP Sprints land a usable product in four to six weeks.",
-    },
-    {
-      q: "What's the process?",
-      a: "We start with a free 30-minute scoping call, agree on goals and budget, then design, build, review together, and launch.",
-    },
-    {
-      q: "What do you need from me?",
-      a: "Your goals, brand basics (logo and colors if you have them), content or rough notes, and examples of sites or apps you like. We'll fill gaps together.",
-    },
-    {
-      q: "How does payment work?",
-      a: "Typically a deposit to start, then the balance at launch. Care Plan is billed monthly. We'll confirm terms in writing before work begins.",
-    },
-  ],
-  closingCta: {
-    headline: "Ready to talk through your project?",
-    subhead: "Book a free 30-minute scoping call — no pitch deck required.",
-    cta: { label: "Book a free 30-minute scoping call", href: CALENDLY_URL },
-  },
 };
 
 export const FOOTER = {
@@ -468,5 +411,205 @@ export const FOOTER = {
   sourceCode: {
     text: "View source",
     href: "https://github.com/kingct19/C.King",
+  },
+};
+
+/* ---------------------------------------------------------------------------
+   akoder.xyz / AdityaKodez Config Layer (Adapted for Chandler King)
+--------------------------------------------------------------------------- */
+
+export const aboutGreetings: AboutGreetings = {
+  morning: "Good morning !",
+  afternoon: "Good afternoon !",
+  evening: "Good evening !",
+};
+
+export const aboutItems: AboutItem[] = [
+  {
+    id: "build",
+    lead: "I'm Chandler King. I build full-stack web & mobile products",
+    illustration: "browser",
+    body: "from Kansas City, MO — holding a B.S. and M.S. in Computer Science (AI Concentration) from Texas A&M University–Commerce where I also competed as an NCAA track & field sprinter.",
+  },
+  {
+    id: "share",
+    lead: "I founded Sozo Tech Enterprise to ship real products",
+    illustration: "notebook",
+    body: "leading a dev team from architecture to production on The Sozo CRM (thesozocrm.com) and AnglerIQ, an AI-powered mobile fish finder.",
+  },
+  {
+    id: "learn",
+    lead: "Right now, I'm combining agentic AI workflows with solid engineering",
+    illustration: "plane",
+    body: "shipping with React, Next.js, React Native, Flutter, TypeScript, and PostgreSQL — and open to software engineering roles or product partnerships.",
+  },
+];
+
+export const footerConfig: FooterConfig = {
+  quote: "Carve that warmth into me.",
+  attribution: "Vinland Saga",
+  credit: "Crafted by Chandler King · Kansas City, MO",
+  artwork: {
+    src: "/images/footer-pine-forest.webp",
+    width: 1264,
+    height: 600,
+  },
+};
+
+export const siteConfig: PortfolioConfig = {
+  meta: {
+    url: SITE.url,
+    title: "Chandler King — Software Engineer & Founder in Kansas City",
+    titleTemplate: "%s · Chandler King",
+    shortTitle: "Chandler King",
+    description:
+      "Chandler King — Software Engineer & Founder in Kansas City. Full-stack and mobile development with React, Next.js, React Native, and TypeScript. Founder of Sozo Tech Enterprise, builder of The Sozo CRM and AnglerIQ.",
+    keywords: [
+      "Chandler King",
+      "software engineer",
+      "full-stack engineer",
+      "mobile developer",
+      "React",
+      "Next.js",
+      "React Native",
+      "TypeScript",
+      "AI engineer",
+      "Kansas City",
+      "Sozo Tech Enterprise",
+    ],
+    authors: [{ name: SITE.name, url: SITE.url }],
+    creator: SITE.name,
+    publisher: SITE.name,
+    classification: "Portfolio",
+    category: "technology",
+    locale: "en_US",
+    ogImage: {
+      url: SITE.avatar,
+      width: 800,
+      height: 800,
+      alt: `${SITE.name} — Software Engineer & Founder`,
+    },
+    twitterCreator: "@chandlerking",
+    icon: "/icon",
+    appleIcon: "/apple-icon",
+    googleVerification: "",
+  },
+  personal: {
+    fullName: SITE.name,
+    firstName: "Chandler",
+    avatar: {
+      src: "/images/chandler-cowboy-doodle.webp",
+      alt: "Doodle sticker portrait of Chandler King in a cowboy hat",
+      fallback: SITE.initials,
+    },
+    location: {
+      label: OVERVIEW.location,
+      timeZone: OVERVIEW.timeZone,
+    },
+    githubUsername: SITE.github.username,
+  },
+  sectionOrder: [
+    "projects",
+    "socials",
+    "skills",
+    "about",
+    "experience",
+    "workflow",
+    "github",
+    "testimonials",
+    "bookshelf",
+  ],
+  sectionFlags: {
+    projects: true,
+    socials: true,
+    components: false,
+    skills: true,
+    about: true,
+    experience: true,
+    services: false,
+    workflow: true,
+    github: true,
+    testimonials: true,
+    bookshelf: true,
+    bookmarks: false,
+    certifications: false,
+    sponsors: false,
+    contact: false,
+  },
+  banner: {
+    imageSrc: "/images/profile-banner-cutout.webp",
+    imageAlt: "Paper cutouts of a keyboard, notebook, paper plane, and coffee cup",
+    openSourceUrl: "https://github.com/kingct19/C.King",
+    openSourceTooltip: "View portfolio source on GitHub",
+    themeToggleLabel: "Toggle theme",
+    themeShortcut: "D",
+    themeTooltip: "Toggle theme",
+    switchAudioSrc: "/switch.mp3",
+  },
+  about: {
+    title: "Hello there !",
+    body: aboutItems.map(({ lead, body }) => `${lead} ${body}`).join(" "),
+  },
+  services: {
+    title: "What I build at Sozo Tech",
+    items: [
+      "Full-stack SaaS & CRM platforms with Next.js, TypeScript, PostgreSQL, and clean product architecture.",
+      "AI-native mobile apps with React Native, Flutter, on-device computer vision, and location intelligence.",
+      "Launch sites, growth builds, and 4–6 week MVP sprints for Kansas City founders and businesses.",
+    ],
+  },
+  workflow: {
+    title: "How I run a project",
+    items: [
+      {
+        label: "Scope",
+        description:
+          "We start with a free 30-minute scoping call, agree on one core workflow, fixed deliverables, and clear milestones.",
+        icon: "scope",
+      },
+      {
+        label: "Communication",
+        description:
+          "Short async updates, working staging demos, and direct communication with me and the Sozo Tech engineering team.",
+        icon: "communication",
+      },
+      {
+        label: "Handoff & Scale",
+        description:
+          "Clean production code, deployment pipelines, and optional ongoing Care Plans after launch.",
+        icon: "handoff",
+      },
+    ],
+  },
+  contact: {
+    title: "Let's build something together",
+    description:
+      "Hiring a full-stack / mobile / AI engineer, or looking to partner with Sozo Tech Enterprise on a new build?",
+    pricing: [
+      {
+        label: "Launch Site",
+        value: "from $3,500",
+        note: "5-page mobile-first site, contact/booking ready, ~2-week delivery.",
+      },
+      {
+        label: "Growth Build",
+        value: "from $8,500",
+        note: "Custom web app with CRM, payments, scheduling, and analytics integrations.",
+      },
+      {
+        label: "MVP Sprint",
+        value: "from $20,000",
+        note: "Clickable web or mobile product in 4–6 weeks with AI features.",
+      },
+    ],
+    channels: socialsConfig,
+  },
+  bookmarks: {
+    title: "Bookmarks",
+    items: [],
+  },
+  certifications: {
+    title: "Certificates",
+    items: [],
   },
 };

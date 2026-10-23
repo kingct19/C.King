@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeftIcon, ArrowUpRightIcon } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon, ArrowUpRightIcon } from "lucide-react";
 
-import BlogContentWithToc from "@/block/blog-content-with-toc";
-import SimpleBlogWithGrid from "@/block/simple-blog-with-grid";
-import { BorderGradientLink } from "@/components/border-gradient";
-import { SectionSeparator } from "@/components/site/panel";
-import { ScrollTop } from "@/components/site/scroll-top";
-import { SiteFooter } from "@/components/site/site-footer";
-import { SiteHeader } from "@/components/site/site-header";
+import { Footer } from "@/components/landing/footer";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   getAllProjectSlugs,
-  getProjectBlogContent,
   getProjectPage,
   PROJECT_PAGES,
 } from "@/config/project-pages";
-import { CALENDLY_URL, SITE } from "@/config/site";
+import { projectsConfig } from "@/config/projects";
+import { CALENDLY_URL } from "@/config/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -51,79 +48,178 @@ export default async function ProjectPage({ params }: PageProps) {
   const project = getProjectPage(slug);
   if (!project) notFound();
 
-  const { content, toc, date } = getProjectBlogContent(project);
-  const others = PROJECT_PAGES.filter((item) => item.slug !== project.slug).slice(0, 3);
+  const index = PROJECT_PAGES.findIndex((item) => item.slug === project.slug);
+  const prev = index > 0 ? PROJECT_PAGES[index - 1] : undefined;
+  const next = index < PROJECT_PAGES.length - 1 ? PROJECT_PAGES[index + 1] : undefined;
+  const explorerMatch = projectsConfig.find((item) => item.id === project.slug);
+  const coverImage = explorerMatch?.image ?? "/rixel.png";
 
   return (
-    <div className="max-w-screen overflow-x-clip">
-      <SiteHeader />
-
-      <main id="main-content" className="py-8">
-        <div className="mx-auto mb-6 w-full max-w-7xl px-4 md:px-8">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <ArrowLeftIcon className="size-3.5" />
-            All projects
-          </Link>
+    <>
+      <div className="relative flex min-h-dvh flex-col gap-y-4 overflow-x-clip bg-background pt-14 pb-12">
+        {/* Breadcrumb */}
+        <div className="px-6 pt-4 border-t border-dashed">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-muted-foreground">
+            <Link href="/#projects" className="hover:text-foreground">
+              Work
+            </Link>
+            <span>/</span>
+            <Link href="/projects" className="hover:text-foreground">
+              Projects
+            </Link>
+            <span>/</span>
+            <span className="truncate font-medium text-foreground">
+              {project.title}
+            </span>
+          </nav>
         </div>
 
-        <BlogContentWithToc
-          blog={{
-            title: project.title,
-            summary: `${project.period} · ${project.tags.slice(0, 3).join(" · ")}`,
-            date,
-            author: SITE.name,
-            authorImage: SITE.avatar,
-            thumbnail: project.previewImage ?? SITE.avatar,
-            content,
-          }}
-          toc={toc}
-        />
+        {/* Title bar */}
+        <h1 className="section-heading text-balance">{project.title}</h1>
 
-        <div className="mx-auto mt-4 flex w-full max-w-7xl flex-wrap items-center gap-3 px-4 md:px-8">
-          {project.href ? (
-            <BorderGradientLink
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex h-9 w-fit items-center gap-1 rounded-full bg-brand-blue px-4 text-sm font-medium text-white"
-            >
-              Visit project
-              <ArrowUpRightIcon className="size-4" />
-            </BorderGradientLink>
-          ) : null}
-          <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Book a scoping call →
-          </a>
+        {/* Meta */}
+        <div className="px-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+          <p className="font-mono text-xs text-muted-foreground">
+            <span className="tabular-nums">{project.period}</span>
+            <span aria-hidden="true" className="mx-2 text-muted-foreground/50">
+              {"//"}
+            </span>
+            {explorerMatch?.category ?? "Case Study"}
+          </p>
         </div>
 
-        <SimpleBlogWithGrid
-          heading="More projects"
-          description="Other case studies from products and client builds."
-          blogs={others.map((item) => ({
-            title: item.title,
-            description: item.summary,
-            href: `/projects/${item.slug}`,
-            image: item.previewImage,
-            author: SITE.name,
-            authorAvatar: SITE.avatar,
-          }))}
-        />
-      </main>
+        {/* Description */}
+        <div className="px-6">
+          <p className="text-base text-muted-foreground leading-relaxed text-pretty">
+            {project.subheading}
+          </p>
+        </div>
 
-      <div className="mx-auto w-full min-w-0 px-4 md:max-w-3xl">
-        <SectionSeparator />
-        <SiteFooter />
+        {/* Hero image */}
+        <div className="aspect-video relative bg-muted overflow-hidden border-y">
+          <Image
+            src={coverImage}
+            alt={project.title}
+            fill
+            sizes="(min-width: 768px) 768px, 100vw"
+            className="object-cover"
+            priority
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 ring-1 ring-black/10 ring-inset dark:ring-white/15"
+          />
+        </div>
+
+        {/* Tags & Actions */}
+        <div className="px-6 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <Badge key={tag} variant="secondary" className="text-xs">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5">
+            {project.href ? (
+              <Button asChild size="sm">
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit Project
+                  <ArrowUpRightIcon className="ml-1.5 size-3.5" />
+                </a>
+              </Button>
+            ) : null}
+            <Button asChild variant="outline" size="sm">
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Book Scoping Call
+              </a>
+            </Button>
+          </div>
+        </div>
+
+        {/* Case Study Content */}
+        <section
+          aria-label="Case study"
+          className="border-t border-dashed px-6 py-6"
+        >
+          <div className="prose max-w-none">
+            <h2>Overview</h2>
+            <p>{project.summary}</p>
+
+            {project.features.map((feature) => (
+              <div key={feature.title}>
+                <h2>{feature.title}</h2>
+                <p>{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Prev / Next Navigation */}
+        <nav
+          aria-label="More projects"
+          className="border-t border-dashed px-6 py-6 flex items-start justify-between gap-4"
+        >
+          <div className="min-w-0 flex-1">
+            {prev ? (
+              <Link
+                href={`/projects/${prev.slug}`}
+                className="group inline-flex min-w-0 max-w-full flex-col gap-1 rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              >
+                <span className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground">
+                  <ArrowLeftIcon className="size-3 transition-transform group-hover:-translate-x-0.5" />
+                  Prev
+                </span>
+                <span className="truncate text-sm font-medium group-hover:text-primary group-hover:underline group-hover:underline-offset-4">
+                  {prev.title}
+                </span>
+              </Link>
+            ) : (
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground hover:text-foreground"
+              >
+                <ArrowLeftIcon className="size-3" />
+                All work
+              </Link>
+            )}
+          </div>
+          <div className="min-w-0 flex-1 text-right">
+            {next ? (
+              <Link
+                href={`/projects/${next.slug}`}
+                className="group inline-flex min-w-0 max-w-full flex-col items-end gap-1 rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+              >
+                <span className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground">
+                  Next
+                  <ArrowRightIcon className="size-3 transition-transform group-hover:translate-x-0.5" />
+                </span>
+                <span className="truncate text-sm font-medium group-hover:text-primary group-hover:underline group-hover:underline-offset-4">
+                  {next.title}
+                </span>
+              </Link>
+            ) : (
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-1 font-mono text-[11px] text-muted-foreground hover:text-foreground"
+              >
+                All work
+                <ArrowRightIcon className="size-3" />
+              </Link>
+            )}
+          </div>
+        </nav>
       </div>
-
-      <ScrollTop />
-    </div>
+      <Footer />
+    </>
   );
 }
