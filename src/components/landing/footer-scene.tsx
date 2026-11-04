@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Fragment, type ReactNode } from "react";
 import { motion, useReducedMotion, useSpring, type Variants } from "motion/react";
 import { DiscordStatus } from "@/components/landing/discord-status";
+import { LongJumpEgg } from "@/components/landing/long-jump/long-jump-game";
 import { footerConfig } from "@/config/site";
 import { MOTION_EASE } from "@/lib/motion";
 
@@ -158,55 +159,60 @@ export function FooterScene({ children }: { children: ReactNode }) {
         </motion.div>
       </motion.div>
 
-      <motion.div
-        aria-hidden="true"
-        data-reveal=""
-        variants={gardenVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.35, margin: "0px 0px -120px 0px" }}
-        onPointerMove={(event) => {
-          if (reducedMotion || event.pointerType === "touch") return;
-          const bounds = event.currentTarget.getBoundingClientRect();
-          const horizontal = (event.clientX - bounds.left) / bounds.width - 0.5;
-          const vertical = (event.clientY - bounds.top) / bounds.height - 0.5;
-          x.set(horizontal * 16);
-          y.set(vertical * 8);
-          rotate.set(horizontal * 1.2);
-        }}
-        onPointerLeave={resetGarden}
-        onPointerCancel={resetGarden}
-        className="relative -mt-6 h-70 select-none overflow-hidden sm:-mt-12 sm:h-80"
-      >
-        <div className="relative left-1/2 h-full w-[calc(100%+24px)] min-w-180 -translate-x-1/2">
-          <motion.div
-            className="h-full origin-bottom"
-            style={{
-              x: reducedMotion ? 0 : x,
-              y: reducedMotion ? 0 : y,
-              rotate: reducedMotion ? 0 : rotate,
-            }}
-          >
-            <Image
-              src={footerConfig.artwork.src}
-              alt=""
-              width={footerConfig.artwork.width}
-              height={footerConfig.artwork.height}
-              sizes="(max-width: 719px) 720px, 792px"
-              className="block h-auto w-full max-w-none"
-              draggable={false}
-            />
-          </motion.div>
-        </div>
+      <div className="relative -mt-6 sm:-mt-12">
+        <motion.div
+          aria-hidden="true"
+          data-reveal=""
+          variants={gardenVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.35, margin: "0px 0px -120px 0px" }}
+          onPointerMove={(event) => {
+            if (reducedMotion || event.pointerType === "touch") return;
+            const bounds = event.currentTarget.getBoundingClientRect();
+            const horizontal = (event.clientX - bounds.left) / bounds.width - 0.5;
+            const vertical = (event.clientY - bounds.top) / bounds.height - 0.5;
+            x.set(horizontal * 16);
+            y.set(vertical * 8);
+            rotate.set(horizontal * 1.2);
+          }}
+          onPointerLeave={resetGarden}
+          onPointerCancel={resetGarden}
+          className="relative h-70 select-none overflow-hidden sm:h-80"
+        >
+          <div className="relative left-1/2 h-full w-[calc(100%+24px)] min-w-180 -translate-x-1/2">
+            <motion.div
+              className="h-full origin-bottom"
+              style={{
+                x: reducedMotion ? 0 : x,
+                y: reducedMotion ? 0 : y,
+                rotate: reducedMotion ? 0 : rotate,
+              }}
+            >
+              <Image
+                src={footerConfig.artwork.src}
+                alt=""
+                width={footerConfig.artwork.width}
+                height={footerConfig.artwork.height}
+                sizes="(max-width: 719px) 720px, 792px"
+                className="block h-auto w-full max-w-none"
+                draggable={false}
+              />
+            </motion.div>
+          </div>
 
-        {/* The visitor count floats centered over the panorama as a glass
-            pill. A sibling of the parallaxing artwork, not a child of it, so
-            the garden shifts behind still glass. The inset wrapper lets the
-            pill size against the full stage instead of half its width. */}
-        <div className="absolute inset-x-4 top-1/2 z-10 flex -translate-y-1/2 justify-center">
-          {children}
+          {/* The visitor count floats centered over the panorama as a glass
+              pill. A sibling of the parallaxing artwork, not a child of it, so
+              the garden shifts behind still glass. The inset wrapper lets the
+              pill size against the full stage instead of half its width. */}
+          <div className="absolute inset-x-4 top-1/2 z-10 flex -translate-y-1/2 justify-center">
+            {children}
+          </div>
+        </motion.div>
+        <div className="absolute bottom-3 left-3 z-20 sm:bottom-4 sm:left-5">
+          <LongJumpEgg />
         </div>
-      </motion.div>
+      </div>
     </footer>
   );
 }

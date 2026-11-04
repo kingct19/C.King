@@ -182,6 +182,10 @@ export function HeaderActions() {
 
   useEffect(() => {
     const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if (e.defaultPrevented || document.querySelector("dialog[open]")) {
+        return;
+      }
+
       if (
         e.target instanceof HTMLInputElement ||
         e.target instanceof HTMLTextAreaElement ||
