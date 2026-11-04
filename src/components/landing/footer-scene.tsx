@@ -202,16 +202,14 @@ export function FooterScene({ children }: { children: ReactNode }) {
           </div>
 
           {/* The visitor count floats centered over the panorama as a glass
-              pill. A sibling of the parallaxing artwork, not a child of it, so
-              the garden shifts behind still glass. The inset wrapper lets the
-              pill size against the full stage instead of half its width. */}
-          <div className="absolute inset-x-4 top-1/2 z-10 flex -translate-y-1/2 justify-center">
+              pill, with the long-jump trigger centered under it. A sibling of
+              the parallaxing artwork, not a child of it, so the garden shifts
+              behind still glass. */}
+          <div className="absolute inset-x-4 top-1/2 z-20 flex -translate-y-1/2 flex-col items-center gap-3">
             {children}
+            <LongJumpEgg />
           </div>
         </motion.div>
-        <div className="absolute bottom-3 left-3 z-20 sm:bottom-4 sm:left-5">
-          <LongJumpEgg />
-        </div>
       </div>
     </footer>
   );

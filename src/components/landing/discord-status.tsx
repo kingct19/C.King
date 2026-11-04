@@ -29,7 +29,7 @@ export function DiscordStatus() {
             alt={siteConfig.personal.fullName}
             width={28}
             height={28}
-            className="size-full object-cover object-[50%_18%]"
+            className="size-full object-contain"
           />
         </div>
         <span

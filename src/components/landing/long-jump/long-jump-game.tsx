@@ -11,6 +11,7 @@ import {
   type SpriteName,
 } from "@/components/landing/long-jump/sprite";
 import {
+  bestLabelY,
   cameraLift,
   cameraX,
   drawClouds,
@@ -18,13 +19,10 @@ import {
   drawScoreCard,
   drawStadium,
   drawText,
-  SCENE_ZOOM,
-  SCREEN_H,
-  SCREEN_W,
-  SPRITE_SCALE,
+  runnerScale,
+  syncFrame,
   VIEW_H,
   VIEW_W,
-  layoutY,
   worldX,
   worldY,
 } from "@/components/landing/long-jump/stadium";
@@ -356,11 +354,11 @@ function drawScene(
     frameFor(state),
     worldX(state.x, cam, shakeX),
     worldY(state.y, shakeY),
-    SPRITE_SCALE,
+    runnerScale(),
   );
   ctx.restore();
 
-  drawText(ctx, best > 0 ? `BEST ${best.toFixed(2)}` : "BEST --", 8, layoutY(158), "#ffffff", 2);
+  drawText(ctx, best > 0 ? `BEST ${best.toFixed(2)}` : "BEST --", 8, bestLabelY(), "#ffffff", 2);
 
   if (state.phase === "landed") {
     drawScoreCard(ctx, state.distance, Math.max(best, state.distance));
@@ -478,11 +476,6 @@ function LongJumpGame({
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
 
-    const renderScale = 2;
-    canvas.width = SCREEN_W * renderScale;
-    canvas.height = SCREEN_H * renderScale;
-    ctx.imageSmoothingEnabled = false;
-
     let frame = 0;
     let last = performance.now();
     let cancelled = false;
@@ -523,7 +516,16 @@ function LongJumpGame({
       const shake = shakeRef.current;
       const shakeX = shake ? Math.round((Math.random() - 0.5) * shake) : 0;
       const shakeY = shake ? Math.round((Math.random() - 0.5) * shake) : 0;
-      ctx.setTransform(renderScale * SCENE_ZOOM, 0, 0, renderScale * SCENE_ZOOM, 0, 0);
+      const box = canvas.getBoundingClientRect();
+      const fit = syncFrame(box.width, box.height);
+      if (canvas.width !== fit.bitmapW || canvas.height !== fit.bitmapH) {
+        canvas.width = fit.bitmapW;
+        canvas.height = fit.bitmapH;
+      }
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.fillStyle = "#5b8cff";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.setTransform(fit.drawScale, 0, 0, fit.drawScale, fit.offsetX, fit.offsetY);
       ctx.imageSmoothingEnabled = false;
       drawScene(
         ctx,
@@ -630,8 +632,6 @@ function LongJumpGame({
     >
       <canvas
         ref={canvasRef}
-        width={SCREEN_W}
-        height={SCREEN_H}
         className="absolute inset-0 size-full"
         style={{ imageRendering: "pixelated" }}
       />
@@ -639,7 +639,7 @@ function LongJumpGame({
       <button
         type="button"
         onClick={onClose}
-        className="pointer-events-auto absolute top-[22%] right-3 z-10 border-2 border-[#1a1a1a] bg-white px-2 py-1 font-mono text-[10px] tracking-[0.14em] text-[#1a1a1a] outline-none hover:bg-[#ffe566]"
+        className="pointer-events-auto absolute top-3 right-3 z-10 border-2 border-[#1a1a1a] bg-white px-2 py-1 font-mono text-[10px] tracking-[0.14em] text-[#1a1a1a] outline-none hover:bg-[#ffe566]"
       >
         CLOSE
       </button>
@@ -650,7 +650,7 @@ function LongJumpGame({
           onClick={() => {
             pendingRef.current.restart = true;
           }}
-          className="pointer-events-auto absolute bottom-8 left-1/2 z-10 -translate-x-1/2 border-2 border-[#1a1a1a] bg-white px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-[#1a1a1a] outline-none hover:bg-[#ffe566]"
+          className="pointer-events-auto absolute bottom-4 left-1/2 z-10 -translate-x-1/2 border-2 border-[#1a1a1a] bg-white px-3 py-1.5 font-mono text-[10px] tracking-[0.14em] text-[#1a1a1a] outline-none hover:bg-[#ffe566]"
         >
           JUMP AGAIN
         </button>

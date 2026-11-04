@@ -4,6 +4,8 @@ export const profileBannerConfig = {
   label: "A few things from my desk",
   profileLabel: "Animate my profile sticker",
   profileSoundSrc: "/profile-pop.mp3",
+  profileSrc: "/images/chandler-walking-sticker.webp",
+  profileAlt: "Line-art sticker of Chandler walking with a coffee cup and backpack",
 };
 
 export const profileBannerStickers: ProfileBannerSticker[] = [

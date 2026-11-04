@@ -4,7 +4,6 @@ import {
   profileBannerConfig,
   profileBannerStickers,
 } from "@/config/profile-banner";
-import { siteConfig } from "@/config/site";
 import { motion, useReducedMotion, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
 import { useRef, type PointerEvent } from "react";
@@ -167,8 +166,8 @@ export function ProfileBanner() {
       </div>
       <div className={styles.profile}>
         <InteractiveSticker
-          src={siteConfig.personal.avatar.src}
-          alt={siteConfig.personal.avatar.alt}
+          src={profileBannerConfig.profileSrc}
+          alt={profileBannerConfig.profileAlt}
           label={profileBannerConfig.profileLabel}
           tilt={-5}
           sizes="(max-width: 640px) 72px, 128px"

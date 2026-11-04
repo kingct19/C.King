@@ -3,23 +3,95 @@ import { BOARD_X, PIT_END_M, START_X, WORLD_RECORD_M } from "@/components/landin
 export const SCENE_ZOOM = 0.68;
 export const SCREEN_W = 480;
 export const SCREEN_H = 270;
-export const VIEW_W = Math.round(SCREEN_W / SCENE_ZOOM);
-export const VIEW_H = Math.round(SCREEN_H / SCENE_ZOOM);
+const BASE_VIEW_W = Math.round(SCREEN_W / SCENE_ZOOM);
+const BASE_VIEW_H = Math.round(SCREEN_H / SCENE_ZOOM);
+export let VIEW_W = BASE_VIEW_W;
+export let VIEW_H = BASE_VIEW_H;
 export const PX_PER_M = 12;
 const PIT_DRAW_SCALE = 4;
+let pitScale = PIT_DRAW_SCALE;
+let tallFrame = false;
 
 export function layoutY(y: number) {
-  return Math.round((y / SCREEN_H) * VIEW_H);
+  return Math.round((y / SCREEN_H) * (tallFrame ? BASE_VIEW_H : VIEW_H));
 }
 
-export const TRACK_FAR = layoutY(196);
-export const GROUND_Y = layoutY(226);
+export let TRACK_FAR = layoutY(196);
+export let GROUND_Y = layoutY(226);
 const STAND_ROWS = 8;
 const STAND_ROW = 16;
 const STAND_BOTTOM = STAND_ROWS * STAND_ROW;
 const BANNER_TOP = STAND_BOTTOM;
 const BANNER_BOTTOM = BANNER_TOP + 26;
 export const SPRITE_SCALE = 0.22;
+let standRowsLive = STAND_ROWS;
+let standRowLive = STAND_ROW;
+let standHeightLive = layoutY(STAND_BOTTOM);
+let bannerTopLive = layoutY(BANNER_TOP);
+let bannerBottomLive = layoutY(BANNER_BOTTOM);
+let ledgeHLive = layoutY(18);
+let trackNearLive = GROUND_Y + layoutY(12);
+let spriteScaleLive = SPRITE_SCALE;
+
+export function runnerScale() {
+  return spriteScaleLive;
+}
+
+export function bestLabelY() {
+  return tallFrame ? 16 : layoutY(158);
+}
+
+export function syncFrame(cssWidth: number, cssHeight: number) {
+  const dpr = Math.min(2, Math.max(1, window.devicePixelRatio || 1));
+  const bitmapW = Math.max(1, Math.round(cssWidth * dpr));
+  const bitmapH = Math.max(1, Math.round(cssHeight * dpr));
+  tallFrame = cssHeight > cssWidth * 1.05;
+
+  if (tallFrame) {
+    VIEW_W = 340;
+    VIEW_H = Math.max(560, Math.round(VIEW_W * (cssHeight / Math.max(cssWidth, 1))));
+    pitScale = 2.2;
+    const trackH = 32;
+    const wall = 20;
+    const bannerH = 26;
+    const lip = 28;
+    TRACK_FAR = VIEW_H - lip - trackH;
+    trackNearLive = TRACK_FAR + trackH;
+    GROUND_Y = TRACK_FAR + 24;
+    ledgeHLive = wall;
+    bannerBottomLive = TRACK_FAR - wall;
+    bannerTopLive = bannerBottomLive - bannerH;
+    standRowLive = 18;
+    standRowsLive = Math.max(6, Math.floor(bannerTopLive / standRowLive));
+    standHeightLive = bannerTopLive;
+    spriteScaleLive = 0.24;
+  } else {
+    VIEW_W = BASE_VIEW_W;
+    VIEW_H = BASE_VIEW_H;
+    pitScale = PIT_DRAW_SCALE;
+    standRowsLive = STAND_ROWS;
+    standRowLive = STAND_ROW;
+    standHeightLive = layoutY(STAND_BOTTOM);
+    bannerTopLive = layoutY(BANNER_TOP);
+    bannerBottomLive = layoutY(BANNER_BOTTOM);
+    ledgeHLive = layoutY(18);
+    TRACK_FAR = layoutY(196);
+    GROUND_Y = layoutY(226);
+    trackNearLive = GROUND_Y + layoutY(12);
+    spriteScaleLive = SPRITE_SCALE;
+  }
+
+  const scaleX = bitmapW / VIEW_W;
+  const scaleY = bitmapH / VIEW_H;
+  const drawScale = tallFrame ? scaleX : Math.min(scaleX, scaleY);
+  return {
+    bitmapW,
+    bitmapH,
+    drawScale,
+    offsetX: tallFrame ? 0 : Math.round((bitmapW - VIEW_W * drawScale) / 2),
+    offsetY: tallFrame ? 0 : Math.round((bitmapH - VIEW_H * drawScale) / 2),
+  };
+}
 
 const BANNER = "#f7f4ee";
 const INK = "#1a1a1a";
@@ -75,7 +147,7 @@ const GLYPHS: Record<string, string[]> = {
 
 function metersToPx(meters: number) {
   if (meters <= BOARD_X) return meters * PX_PER_M;
-  return (meters - BOARD_X) * PX_PER_M * PIT_DRAW_SCALE;
+  return (meters - BOARD_X) * PX_PER_M * pitScale;
 }
 
 export function worldX(x: number, camX: number, shake: number) {
@@ -114,7 +186,7 @@ function flightCamera(x: number) {
   const athlete = metersToPx(x) - metersToPx(hold);
   const rightMargin = 90;
   if (athlete <= VIEW_W - rightMargin) return hold;
-  return x - (VIEW_W - rightMargin) / (PX_PER_M * PIT_DRAW_SCALE);
+  return x - (VIEW_W - rightMargin) / (PX_PER_M * pitScale);
 }
 
 function clamp(value: number, min: number, max: number) {
@@ -302,8 +374,7 @@ function drawCrowd(
   camX: number,
   shakeX: number,
 ) {
-  const standHeight = layoutY(STAND_BOTTOM);
-  fill(ctx, 0, 0, VIEW_W, standHeight, "#2a54b4");
+  fill(ctx, 0, 0, VIEW_W, standHeightLive, "#2a54b4");
   const seatW = 24;
   const aisleEvery = 7;
   const origin = camX * PX_PER_M;
@@ -312,13 +383,14 @@ function drawCrowd(
   for (let seat = first; seat <= last; seat += 1) {
     const x = Math.round(seat * seatW - origin + shakeX);
     if (((seat % aisleEvery) + aisleEvery) % aisleEvery === 0) {
-      drawStairs(ctx, x, 0, standHeight);
+      drawStairs(ctx, x, 0, standHeightLive);
       continue;
     }
-    for (let row = 0; row < STAND_ROWS; row += 1) {
+    for (let row = 0; row < standRowsLive; row += 1) {
       const bob =
         reducedMotion ? 0 : Math.sin(elapsed * 5 + seat * 1.3 + row) > 0.72 ? 1 : 0;
-      drawSeatedFan(ctx, x, layoutY(row * STAND_ROW), seat * 3 + row * 5, bob);
+      const rowY = tallFrame ? row * standRowLive : layoutY(row * STAND_ROW);
+      drawSeatedFan(ctx, x, rowY, seat * 3 + row * 5, bob);
     }
   }
 }
@@ -363,17 +435,17 @@ function drawBanner(
   camX: number,
   shakeX: number,
 ) {
-  fill(ctx, 0, layoutY(BANNER_TOP), VIEW_W, layoutY(BANNER_BOTTOM) - layoutY(BANNER_TOP), BANNER);
-  fill(ctx, 0, layoutY(BANNER_TOP), VIEW_W, 2, "#e7e2d6");
+  fill(ctx, 0, bannerTopLive, VIEW_W, bannerBottomLive - bannerTopLive, BANNER);
+  fill(ctx, 0, bannerTopLive, VIEW_W, 2, "#e7e2d6");
   const periodPx = 188;
   const origin = camX * PX_PER_M;
   const first = Math.floor((origin - periodPx) / periodPx);
   const last = Math.ceil((origin + VIEW_W + periodPx) / periodPx);
   for (let index = first; index <= last; index += 1) {
     const x = Math.round(index * periodPx - origin + shakeX);
-    drawText(ctx, "TOKYO", x + 4, layoutY(BANNER_TOP + 6), GOLD, 3);
-    drawEmblem(ctx, x + 76, layoutY(BANNER_TOP + 1));
-    drawText(ctx, "1964", x + 102, layoutY(BANNER_TOP + 6), GOLD, 3);
+    drawText(ctx, "TOKYO", x + 4, bannerTopLive + (tallFrame ? 6 : layoutY(6)), GOLD, 3);
+    drawEmblem(ctx, x + 76, bannerTopLive + (tallFrame ? 1 : layoutY(1)));
+    drawText(ctx, "1964", x + 102, bannerTopLive + (tallFrame ? 6 : layoutY(6)), GOLD, 3);
   }
 }
 
@@ -452,8 +524,8 @@ function gaugeColor(degrees: number) {
 }
 
 function drawAngleMeter(ctx: CanvasRenderingContext2D, angle: number) {
-  const cx = 12;
-  const cy = VIEW_H - 18;
+  const cx = tallFrame ? 18 : 12;
+  const cy = tallFrame ? bestLabelY() + 56 : VIEW_H - 18;
   const outer = 34;
   const inner = 13;
   for (let y = -outer; y <= 0; y += 1) {
@@ -504,8 +576,8 @@ export function drawStadium(
 
   ctx.imageSmoothingEnabled = false;
   const trackTop = TRACK_FAR + shakeY;
-  const trackNear = GROUND_Y + layoutY(12) + shakeY;
-  const ledgeH = layoutY(18);
+  const trackNear = trackNearLive + shakeY;
+  const ledgeH = ledgeHLive;
   const ledgeY = trackTop - ledgeH;
   const runwayLeft = worldX(START_X - 8, camX, shakeX);
   const startLine = worldX(START_X + 0.7, camX, shakeX);
@@ -516,7 +588,7 @@ export function drawStadium(
   fill(ctx, 0, 0, VIEW_W, VIEW_H, WALL);
   drawCrowd(ctx, elapsed, reducedMotion, camX, shakeX);
   drawBanner(ctx, camX, shakeX);
-  fill(ctx, 0, layoutY(BANNER_BOTTOM), VIEW_W, Math.max(1, ledgeY - layoutY(BANNER_BOTTOM)), WALL);
+  fill(ctx, 0, bannerBottomLive, VIEW_W, Math.max(1, ledgeY - bannerBottomLive), WALL);
   fill(ctx, 0, ledgeY, VIEW_W, ledgeH, LEDGE);
   fill(ctx, 0, ledgeY, VIEW_W, 3, LEDGE_TOP);
 
@@ -526,14 +598,14 @@ export function drawStadium(
 
   const trackDepth = trackNear - trackTop;
   drawLaneLine(ctx, trackTop + Math.round(trackDepth * 0.34), runwayLeft, board);
-  drawLaneLine(ctx, GROUND_Y + layoutY(4) + shakeY, runwayLeft, board);
+  drawLaneLine(ctx, GROUND_Y + (tallFrame ? 4 : layoutY(4)) + shakeY, runwayLeft, board);
   fill(ctx, startLine, trackTop + Math.round(trackDepth * 0.18), 3, Math.max(8, trackDepth - layoutY(10)), LANE);
   fill(ctx, startLine - 1, trackTop + 22, 5, 8, LANE);
   fill(ctx, startLine - 1, GROUND_Y + 6 + shakeY, 5, 8, LANE);
   fill(ctx, board - 2, trackTop, 4, trackNear - trackTop, LANE);
 
-  const pitTop = trackTop;
-  const pitBottom = Math.min(VIEW_H - layoutY(8), trackNear + layoutY(52));
+  const pitTop = trackTop - 2;
+  const pitBottom = trackNear + 4;
   const pitW = pitRight - board;
   const pitH = pitBottom - pitTop;
   fill(ctx, board - 3, pitTop - 16, pitW + 6, pitH + 22, RAIL);
@@ -548,7 +620,7 @@ export function drawStadium(
   }
   fill(ctx, worldX(WORLD_RECORD_M, camX, shakeX), pitTop - 14, 2, pitH + 14, GOLD);
 
-  for (let meter = START_X - 2; meter < PIT_END_M + 10; meter += 1.2) {
+  for (let meter = START_X - 2; meter < BOARD_X; meter += 1.2) {
     drawPot(ctx, worldX(meter, camX, shakeX), ledgeY + 2);
   }
 
@@ -604,9 +676,10 @@ export function drawScoreCard(
   distance: number,
   best: number,
 ) {
-  fill(ctx, VIEW_W / 2 - 70, layoutY(188), 140, 42, BANNER);
-  fill(ctx, VIEW_W / 2 - 70, layoutY(188), 140, 2, INK);
-  fill(ctx, VIEW_W / 2 - 70, layoutY(188) + 40, 140, 2, INK);
-  drawText(ctx, distance.toFixed(2), VIEW_W / 2 - 36, layoutY(188) + 8, INK, 3);
-  drawText(ctx, `BEST ${best.toFixed(2)}`, VIEW_W / 2 - 38, layoutY(188) + 28, INK, 1);
+  const cardY = tallFrame ? bannerTopLive - 50 : layoutY(188);
+  fill(ctx, VIEW_W / 2 - 70, cardY, 140, 42, BANNER);
+  fill(ctx, VIEW_W / 2 - 70, cardY, 140, 2, INK);
+  fill(ctx, VIEW_W / 2 - 70, cardY + 40, 140, 2, INK);
+  drawText(ctx, distance.toFixed(2), VIEW_W / 2 - 36, cardY + 8, INK, 3);
+  drawText(ctx, `BEST ${best.toFixed(2)}`, VIEW_W / 2 - 38, cardY + 28, INK, 1);
 }

@@ -498,8 +498,8 @@ export const siteConfig: PortfolioConfig = {
     fullName: SITE.name,
     firstName: "Chandler",
     avatar: {
-      src: "/images/chandler-cowboy-doodle.webp",
-      alt: "Doodle sticker portrait of Chandler King in a cowboy hat",
+      src: "/images/chandler-walking-sticker.webp",
+      alt: "Line-art sticker of Chandler walking with a coffee cup and backpack",
       fallback: SITE.initials,
     },
     location: {
