@@ -77,9 +77,9 @@ export const streamComponentRegistry: StreamComponentDoc[] = [
   {
     id: "webcam-frame",
     title: "Webcam frame",
-    summary: "A dashed camera card with a social carousel.",
+    summary: "A dashed camera card.",
     description:
-      "A dashed camera card in the same style as the footer status. The center stays clear on the live route so the camera can sit behind it. A matching card underneath cycles Instagram, TikTok, and YouTube. On 9:16 the frame covers the top of the phone.",
+      "A dashed camera card in the same style as the footer status. The center stays clear on the live route so the camera can sit behind it. On 9:16 the frame covers the top of the phone.",
     icon: "webcam",
     sourcePath: "src/components/stream/webcam-frame.tsx",
     order: 3,

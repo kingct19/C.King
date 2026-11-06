@@ -285,7 +285,7 @@ export function Overlay() {
       "OBS Browser source, 1920×1080. Leave the hole empty for the camera.",
     ),
     usageNotes:
-      "A dashed camera card, matching the footer status. Preview shows a camera label in the hole. On the live route the center stays empty so the camera can sit behind it. A matching card cycles Instagram, TikTok, and YouTube. Desktop sits bottom-left. Mobile covers the top of the 9:16 phone.",
+      "A dashed camera card, matching the footer status. Preview shows a camera label in the hole. On the live route the center stays empty so the camera can sit behind it. Desktop sits bottom-left. Mobile covers the top of the 9:16 phone.",
     props: sharedProps,
     notes: [
       {
@@ -294,18 +294,18 @@ export function Overlay() {
       },
       {
         title: "Dashed card",
-        body: "The frame and the social carousel both use the footer status card: rounded, dashed border, and a translucent fill. The live hole stays clear.",
+        body: "The frame uses the footer status card: rounded, dashed border, and a translucent fill in preview. The live hole stays clear.",
       },
       {
         title: "9:16 placement",
-        body: "Mobile fills the top of the phone. The social card sits in the bottom-right of the frame. The pine-forest sticker and a dashed rule divide the camera from the gameplay.",
+        body: "Mobile fills the top of the phone. The pine-forest sticker and a dashed rule divide the camera from the gameplay.",
       },
     ],
     files: [
       { path: "src/components/stream/webcam-frame.tsx", language: "tsx" },
       OVERLAY_ROOT,
     ],
-    dependencies: ["motion"],
+    dependencies: [],
   },
   stinger: {
     usage: `import { Stinger } from "@/components/stream/stinger";
