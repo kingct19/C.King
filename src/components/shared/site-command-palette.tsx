@@ -10,6 +10,7 @@ import {
   Link,
   Monitor,
   Moon,
+  Radio,
   Sun,
   Terminal,
 } from "@/components/shared/site-icons";
@@ -59,6 +60,13 @@ export function SiteCommandPalette({
             icon: <Home className="size-4" />,
             keywords: ["landing", "start", "top"],
             onSelect: go("/"),
+          },
+          {
+            id: "go-components",
+            label: "Stream Components",
+            icon: <Radio className="size-4" />,
+            keywords: ["components", "overlays", "obs", "tiktok", "twitch", "alerts", "webcam"],
+            onSelect: go("/components"),
           },
           {
             id: "go-projects",

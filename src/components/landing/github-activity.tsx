@@ -10,23 +10,42 @@ import { githubSectionConfig as copy } from "@/config/github";
 import { activityColor, type ActivityCalendar } from "@/lib/github-activity";
 import { cn } from "@/lib/utils";
 
-const dateFormat = new Intl.DateTimeFormat("en-GB", {
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-  timeZone: "UTC",
-});
-const monthFormat = new Intl.DateTimeFormat("en-GB", {
-  month: "short",
-  timeZone: "UTC",
-});
+// Node and browsers disagree on en-GB short months ("Sept" vs "Sep"), which
+// breaks hydration. These labels stay fixed so server and client match.
+const SHORT_MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+] as const;
+
+function utcDate(isoDate: string) {
+  return new Date(`${isoDate}T00:00:00Z`);
+}
+
+function formatMonth(isoDate: string) {
+  return SHORT_MONTHS[utcDate(isoDate).getUTCMonth()];
+}
+
+function formatDay(isoDate: string) {
+  const date = utcDate(isoDate);
+  return `${date.getUTCDate()} ${SHORT_MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
+}
 
 function dayLabel(day: ActivityCalendar["days"][number]) {
   const count =
     day.count === null
       ? copy.unavailable
       : `${day.count} ${day.count === 1 ? copy.contribution : copy.contributions}`;
-  return { date: dateFormat.format(new Date(`${day.date}T00:00:00Z`)), count };
+  return { date: formatDay(day.date), count };
 }
 
 export function GitHubActivity({ calendar }: { calendar: ActivityCalendar }) {
@@ -112,7 +131,7 @@ export function GitHubActivity({ calendar }: { calendar: ActivityCalendar }) {
                 className="absolute"
                 style={{ left: column * 13 }}
               >
-                {monthFormat.format(new Date(`${date}T00:00:00Z`))}
+                {formatMonth(date)}
               </span>
             ))}
           </div>

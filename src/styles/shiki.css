@@ -1,0 +1,31 @@
+/* Dual-theme Shiki tokens. Light colors are inline on each span; dark mode
+   swaps via --shiki-dark. Keep selectors simple so Lightning CSS cannot drop them. */
+.shiki {
+  background-color: transparent !important;
+  margin: 0;
+  padding: 0;
+}
+
+.shiki code {
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  background: transparent;
+}
+
+.shiki .line {
+  display: inline-block;
+  min-height: 1.65em;
+  width: 100%;
+}
+
+html.dark .shiki,
+html.dark .shiki span,
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  font-style: var(--shiki-dark-font-style);
+  font-weight: var(--shiki-dark-font-weight);
+  text-decoration: var(--shiki-dark-text-decoration);
+}

@@ -328,7 +328,12 @@ export type ComponentIcon =
   | "stack"
   | "status"
   | "snake"
-  | "rolodex";
+  | "rolodex"
+  | "overlay"
+  | "banner"
+  | "alert"
+  | "webcam"
+  | "transition";
 
 export interface SiteNavigationItem {
   id: string;

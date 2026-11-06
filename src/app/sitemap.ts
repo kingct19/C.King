@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { PROJECT_PAGES } from "@/config/project-pages";
 import { SITE } from "@/config/site";
+import { getEnabledStreamComponents } from "@/config/stream-components";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const projectEntries: MetadataRoute.Sitemap = PROJECT_PAGES.map((project) => ({
@@ -10,6 +11,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: 0.7,
   }));
+
+  const componentEntries: MetadataRoute.Sitemap = getEnabledStreamComponents().map(
+    (component) => ({
+      url: `${SITE.url}/components/${component.id}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    }),
+  );
 
   return [
     {
@@ -31,6 +41,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     ...projectEntries,
+    {
+      url: `${SITE.url}/components`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    ...componentEntries,
     {
       url: `${SITE.url}/resume`,
       lastModified: new Date(),

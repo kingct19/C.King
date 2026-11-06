@@ -1,0 +1,90 @@
+.decoration {
+  display: none;
+  position: absolute;
+  top: -2rem;
+  left: calc(100% + 16px);
+  z-index: 10;
+  width: 220px;
+  aspect-ratio: 1.12;
+}
+
+.trigger {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-xl);
+  background: transparent;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+
+.trigger:disabled {
+  pointer-events: none;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color-scheme: light dark;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.frame[data-ready="true"] {
+  visibility: visible;
+}
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bean {
+  position: absolute;
+  width: 7px;
+  height: 10px;
+  border-radius: 50% 50% 46% 46%;
+  animation: bean-burst var(--bean-duration) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes bean-burst {
+  0% {
+    transform: translate(0, 0) rotate(var(--bean-rotation));
+    opacity: 1;
+  }
+  35% {
+    transform: translate(calc(var(--bean-x) * 0.65), var(--bean-rise))
+      rotate(calc(var(--bean-rotation) + 120deg));
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--bean-x), var(--bean-fall))
+      rotate(calc(var(--bean-rotation) + 280deg));
+    opacity: 0;
+  }
+}
+
+@media (min-width: 80rem) {
+  .decoration {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confetti {
+    display: none;
+  }
+}

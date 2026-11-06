@@ -106,6 +106,10 @@
 
 :root {
   --frame-max-w: 48rem;
+  --coffee-bean: oklch(0.38 0.05 52);
+  --coffee-roast: oklch(0.52 0.08 55);
+  --coffee-cream: oklch(0.9 0.03 85);
+  --coffee-foam: oklch(0.78 0.09 68);
   --brand-blue: #0095f6;
   --verified-blue: var(--brand-blue);
   --motion-duration-fast: 180ms;
@@ -273,6 +277,22 @@ body {
   scrollbar-gutter: auto;
 }
 
+html:has([data-live-overlay]),
+html:has([data-live-overlay]) body {
+  background: transparent !important;
+  overflow: hidden;
+  scrollbar-gutter: auto;
+}
+
+@keyframes stream-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @layer components {
   .section-heading {
     @apply text-xl font-semibold border-y border-dashed bg-muted/20 px-6 py-2;
@@ -346,6 +366,97 @@ body {
     background-image:
       repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.01) 10px, rgba(255, 255, 255, 0.01) 11px),
       repeating-linear-gradient(-45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.01) 10px, rgba(255, 255, 255, 0.01) 11px);
+  }
+
+  .stream-preview-wash {
+    background:
+      radial-gradient(ellipse at 18% 16%, rgba(72, 96, 210, 0.32), transparent 52%),
+      radial-gradient(ellipse at 82% 84%, rgba(190, 72, 48, 0.22), transparent 48%),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 36px),
+      repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 36px),
+      #141414;
+  }
+
+  .stream-marquee {
+    animation: stream-marquee 16s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stream-marquee {
+      animation: none;
+    }
+  }
+
+  .preview-box {
+    contain: layout paint style;
+  }
+
+  .preview-body {
+    --preview-min-h: clamp(200px, 30vh, 300px);
+    --preview-max-h: clamp(420px, 62vh, 560px);
+    display: grid;
+    grid-template-areas: "pane";
+    min-height: var(--preview-min-h);
+  }
+
+  @supports (height: 1svh) {
+    .preview-body {
+      --preview-min-h: clamp(200px, 30svh, 300px);
+      --preview-max-h: clamp(420px, 62svh, 560px);
+    }
+  }
+
+  .preview-pane {
+    grid-area: pane;
+    min-width: 0;
+    max-height: var(--preview-max-h);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    transition:
+      opacity var(--motion-duration-fast) var(--motion-ease-standard),
+      transform var(--motion-duration-fast) var(--motion-ease-standard),
+      visibility 0s linear var(--motion-duration-fast);
+  }
+
+  .preview-pane[data-active="true"] {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  .preview-pane[data-active="false"] {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(4px);
+    pointer-events: none;
+  }
+
+  .preview-pane--code {
+    position: absolute;
+    inset: 0;
+    overflow: auto;
+    scrollbar-width: none !important;
+    overscroll-behavior: contain;
+    contain: layout paint;
+  }
+
+  .preview-pane--code::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .preview-pane--code .shiki {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    font-size: 12.5px;
+    line-height: 1.65;
+    overflow: visible;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .preview-pane {
+      transition: none;
+    }
   }
 
   .frame-gutter-dots {
@@ -525,6 +636,52 @@ body {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 2px;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+.prose thead th {
+  text-align: left;
+  font-weight: 500;
+  color: var(--foreground);
+  border-bottom: 1px dashed var(--border);
+  padding: 0.5rem 1rem 0.5rem 0;
+  white-space: nowrap;
+}
+.prose tbody td {
+  vertical-align: top;
+  border-bottom: 1px dashed var(--border);
+  padding: 0.75rem 1rem 0.75rem 0;
+  color: var(--muted-foreground);
+}
+.prose tbody td:first-child {
+  color: var(--foreground);
+  font-weight: 500;
+}
+.prose :where(code):not(pre code) {
+  border-radius: 0.3rem;
+  background: var(--muted);
+  padding: 0.1rem 0.35rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--foreground);
+}
+.prose pre {
+  margin: 1rem 0;
+  overflow-x: auto;
+  border: 1px dashed var(--border);
+  background: var(--muted) / 0.35;
+  padding: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.65;
+}
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
 }
 
 @keyframes wave {

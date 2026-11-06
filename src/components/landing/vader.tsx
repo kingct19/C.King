@@ -35,7 +35,7 @@ export function Vader() {
   };
 
   return (
-    <div className="absolute right-[calc(3.5rem+(100%-100vw)/2)] -top-6 z-10 hidden justify-center px-6 py-6 xl:flex">
+    <div className="absolute right-[calc(3.5rem+(100%-100vw)/2)] top-52 z-10 hidden justify-center px-6 py-6 xl:flex">
       <button
         type="button"
         aria-label={

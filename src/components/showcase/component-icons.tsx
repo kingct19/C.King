@@ -334,6 +334,60 @@ export function SparklesIcon(props: ComponentIconProps) {
   );
 }
 
+export function OverlayIcon(props: ComponentIconProps) {
+  return (
+    <PaperCutIcon {...props} accent="var(--primary)" tilt={-6} silhouette="M10 16H54V48H10Z">
+      <path d="M10 16h44v8H10Z" fill="var(--cutout-accent)" />
+      <path d="M16 20h10M40 20h8" stroke="var(--cutout-paper)" strokeWidth="2.5" />
+      <path d="M18 32h28M18 40h16" />
+      <PrintDots x={38} y={36} />
+    </PaperCutIcon>
+  );
+}
+
+export function BannerIcon(props: ComponentIconProps) {
+  return (
+    <PaperCutIcon {...props} accent="var(--chart-1)" tilt={5} silhouette="M8 38 18 26H50L56 38 50 50H18Z">
+      <path d="M18 30h28l5 8-5 8H18l-5-8Z" fill="var(--cutout-accent)" />
+      <path d="M24 36h16M24 42h10" stroke="var(--cutout-paper)" strokeWidth="2.5" />
+      <PrintDots x={40} y={22} />
+    </PaperCutIcon>
+  );
+}
+
+export function AlertIcon(props: ComponentIconProps) {
+  return (
+    <PaperCutIcon {...props} accent="var(--chart-2)" tilt={-8} silhouette="M32 8 54 46H10Z">
+      <path d="M32 14 48 42H16Z" fill="var(--cutout-accent)" />
+      <path d="M32 24v10" stroke="var(--cutout-paper)" strokeWidth="3" />
+      <circle cx="32" cy="40" r="1.8" fill="var(--cutout-paper)" stroke="none" />
+      <PrintDots x={14} y={48} />
+    </PaperCutIcon>
+  );
+}
+
+export function WebcamIcon(props: ComponentIconProps) {
+  return (
+    <PaperCutIcon {...props} accent="var(--primary)" tilt={6} silhouette="M12 16H40L52 24V48H12Z">
+      <path d="M12 16h28v32H12Z" fill="var(--cutout-paper)" />
+      <circle cx="26" cy="32" r="9" fill="var(--cutout-accent)" />
+      <circle cx="26" cy="32" r="4" fill="var(--cutout-paper)" />
+      <path d="M40 24 52 30v12L40 48" />
+      <PrintDots x={16} y={44} />
+    </PaperCutIcon>
+  );
+}
+
+export function TransitionIcon(props: ComponentIconProps) {
+  return (
+    <PaperCutIcon {...props} accent="var(--chart-1)" tilt={-5} silhouette="M10 14H28L38 32 28 50H10L20 32Z">
+      <path d="M10 14h16l10 18-10 18H10l10-18Z" fill="var(--cutout-accent)" />
+      <path d="M30 14h16l10 18-10 18H30l10-18Z" />
+      <PrintDots x={40} y={22} />
+    </PaperCutIcon>
+  );
+}
+
 export function RolodexIcon(props: ComponentIconProps) {
   return (
     <PaperCutIcon {...props} accent="var(--chart-1)" tilt={-5} silhouette="M15 15H19V10H26V15H38V10H45V15H49Q53 15 53 20V44L57 52H8L12 44V20Q12 15 15 15Z">
@@ -489,6 +543,11 @@ const componentIcons: Record<ComponentIcon, ComponentType<ComponentIconProps>> =
   status: WorkflowStatusIcon,
   snake: SnakeIcon,
   rolodex: RolodexIcon,
+  overlay: OverlayIcon,
+  banner: BannerIcon,
+  alert: AlertIcon,
+  webcam: WebcamIcon,
+  transition: TransitionIcon,
 };
 
 export function getComponentIcon(name: ComponentIcon) {

@@ -1,17 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, Geist_Mono, Instrument_Serif } from "next/font/google";
 
-import { BottomNav } from "@/components/landing/bottom-nav";
-import { BackToTop } from "@/components/shared/back-to-top";
-import { FrameGutters } from "@/components/shared/frame-gutters";
-import { SiteHeader } from "@/components/shared/site-header";
 import { ThemeProvider } from "@/components/shared/theme-provider";
-import { JsonLd } from "@/components/site/json-ld";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig, SITE } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 import "../styles/theme-transition.css";
+import "../styles/shiki.css";
 import "./globals.css";
 
 const DmSans = DM_Sans({
@@ -114,29 +109,7 @@ export default function RootLayout({
         <noscript>
           <style>{`.no-js-visible { opacity: 1 !important; transform: none !important; stroke-dashoffset: 0 !important; stroke-dasharray: none !important; }`}</style>
         </noscript>
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:shadow-md focus:ring-2 focus:ring-ring"
-        >
-          Skip to content
-        </a>
-        <ThemeProvider>
-          <TooltipProvider delayDuration={150}>
-            <JsonLd />
-            <SiteHeader />
-            <FrameGutters />
-            <div className="relative mx-auto w-full max-w-[var(--frame-max-w)]">
-              <div
-                id="main-content"
-                className="relative w-full border-x border-dashed bg-muted/20"
-              >
-                {children}
-              </div>
-              <BottomNav />
-              <BackToTop />
-            </div>
-          </TooltipProvider>
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

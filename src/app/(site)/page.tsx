@@ -1,6 +1,7 @@
 import { About } from "@/components/landing/about";
 import { Bookshelf } from "@/components/landing/bookshelf";
 import { Campfire } from "@/components/landing/campfire";
+import { CoffeeShopScene } from "@/components/landing/coffee-shop-scene";
 import { Experience } from "@/components/landing/experience";
 import { Footer } from "@/components/landing/footer";
 import { GitHubSection } from "@/components/landing/github-section";
@@ -20,6 +21,7 @@ import { SideNote } from "@/components/shared/side-note";
 import { projectsConfig, projectsSectionConfig } from "@/config/projects";
 import { getEnabledBooks } from "@/config/books";
 import { sectionNotes } from "@/config/section-notes";
+import { coffeeShopConfig } from "@/config/coffee-shop";
 import { siteConfig } from "@/config/site";
 import type { SectionId } from "@/config/types";
 import type { ReactElement } from "react";
@@ -105,6 +107,7 @@ export default function Home() {
               id={sectionId}
               className="relative bg-background scroll-mt-20"
             >
+              {sectionId === "about" && coffeeShopConfig.enabled && <CoffeeShopScene />}
               {sectionId === "about" && <Vader />}
               {note && <SideNote side={note.side}>{note.text}</SideNote>}
               {content}

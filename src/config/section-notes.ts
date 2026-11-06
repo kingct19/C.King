@@ -1,6 +1,10 @@
 import type { SectionId, SectionNoteConfig } from "@/config/types";
 
 export const sectionNotes: Partial<Record<SectionId, SectionNoteConfig>> = {
+  components: {
+    text: "Drop these on\nOBS or TikTok",
+    side: "left",
+  },
   projects: {
     text: "Shipped from zero\nto production",
     side: "right",
