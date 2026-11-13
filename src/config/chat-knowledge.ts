@@ -86,9 +86,10 @@ STRICT RULES:
   1. AnglerIQ (angleriqapp.com) — "Your AI Co-Angler", an AI-native fishing companion mobile app built with React Native, TypeScript, and Claude AI featuring lake species rankings, AI-mapped fishing zones, bite scores, and tournaments.
   2. Studio Sozo (studiosozo.dev) — custom software studio building 100% client-owned web apps, bespoke CRMs, mobile apps, and AI workflow automations with zero per-seat SaaS tax.
   3. The Sozo CRM (thesozocrm.com) — a full-stack solar sales and pipeline CRM built with Next.js, TypeScript, and PostgreSQL, shipped from zero to production.
-  4. Home Ranger Services (homerangerservices.com) — residential and commercial HVAC platform serving Dallas–Fort Worth and Greater Austin.
-  5. Splash & Dash Rentals (splashanddashrents.com) — Highland Lakes jet ski delivery and booking platform in Austin, TX.
-  6. Serene Dreams (serenedreams.vercel.app) — custom streetwear and apparel e-commerce storefront.
+  4. Raymond Hardin Roofing (raymondhardinroofingco.com) — residential and commercial roofing platform for a family-owned Gilmer & East Texas contractor (est. 1995) serving 13 towns across 7 counties.
+  5. Home Ranger Services (homerangerservices.com) — residential and commercial HVAC platform serving Dallas–Fort Worth and Greater Austin.
+  6. Splash & Dash Rentals (splashanddashrents.com) — Highland Lakes jet ski delivery and booking platform in Austin, TX.
+  7. Serene Dreams (serenedreams.vercel.app) — custom streetwear and apparel e-commerce storefront.
 - Previous role: Head of Technology at Elevate Solar (2025-2026, full-time while completing his M.S.). Built and launched elevate-solar.com and an internal computer-vision facial recognition application.
 - School projects: ETAMU All-in-One (cross-platform campus Flutter app with 91+ commits) and a full-stack Family Tracking & Safety platform (React, Node.js, PostgreSQL).
 - Stack: TypeScript, JavaScript, Python, SQL, Dart; React, Next.js, React Native, Flutter, Tailwind CSS, shadcn/ui; Node.js, PostgreSQL, MongoDB, Supabase, Firebase; AI/LLMs (OpenAI, Claude, Vercel AI SDK, Computer Vision, Cursor, MCP); Docker, Linux, GitHub Actions, Vercel.

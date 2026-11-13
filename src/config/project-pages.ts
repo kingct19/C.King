@@ -107,6 +107,35 @@ export const PROJECT_PAGES: ProjectPage[] = [
     ],
   },
   {
+    slug: "raymond-hardin-roofing",
+    title: "Raymond Hardin Roofing",
+    period: "2026",
+    summary:
+      "Residential and commercial roofing platform for a family-owned Gilmer & East Texas contractor serving 13 towns since 1995.",
+    href: "https://www.raymondhardinroofingco.com",
+    previewImage: "/images/projects/raymond-hardin-roofing.webp",
+    tags: ["Next.js", "TypeScript", "Local SEO", "Tailwind CSS"],
+    heading: "Raymond Hardin Roofing",
+    subheading:
+      "Shingle, standing-seam metal, torch-down rubber, and storm repair platform built for an A+ BBB-accredited East Texas roofing crew.",
+    features: [
+      {
+        icon: "globe",
+        title: "13-Town East Texas Service Architecture",
+        description:
+          "Dedicated local SEO pages across Gilmer, Longview, Tyler, Mount Pleasant, Mineola, and surrounding Upshur, Gregg, and Smith county towns.",
+        image: "/images/projects/raymond-hardin-roofing.webp",
+      },
+      {
+        icon: "shield",
+        title: "Service Guides, Crew Gallery & Review QR",
+        description:
+          "Plain-language breakdowns for shingle, metal, and torch-down roofs, jobsite photo proof, free estimate capture, and a downloadable Google review QR card.",
+        image: "/images/projects/raymond-hardin-roofing.webp",
+      },
+    ],
+  },
+  {
     slug: "home-ranger",
     title: "Home Ranger Services",
     period: "2026",
@@ -266,6 +295,7 @@ export const PROJECT_TITLE_TO_SLUG: Record<string, string> = {
   AnglerIQ: "angleriq",
   "Studio Sozo": "studio-sozo",
   "The Sozo CRM": "the-sozo-crm",
+  "Raymond Hardin Roofing": "raymond-hardin-roofing",
   "Home Ranger Services": "home-ranger",
   "Splash & Dash Rentals": "splash-and-dash",
   "Serene Dreams": "serene-dreams",

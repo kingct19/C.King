@@ -102,7 +102,7 @@ export const RESUME_PROJECTS = [
       "Custom software studio platform building 100% client-owned web apps, bespoke CRMs, mobile apps, and AI workflow automations.",
     bullets: [
       "Full-stack platform and client delivery engine for custom CRMs, Stripe/QuickBooks/Twilio webhook integrations, and AI automation pipelines.",
-      "Delivered regional platforms including Home Ranger Services (homerangerservices.com), Splash & Dash (splashanddashrents.com), and Serene Dreams.",
+      "Delivered regional platforms including Raymond Hardin Roofing (raymondhardinroofingco.com), Home Ranger Services (homerangerservices.com), Splash & Dash (splashanddashrents.com), and Serene Dreams.",
     ],
     tags: ["Next.js", "TypeScript", "PostgreSQL", "AI Automation", "Webhooks"],
   },

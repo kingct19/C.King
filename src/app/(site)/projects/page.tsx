@@ -15,6 +15,7 @@ import {
   LocationPinCutoutIcon,
   ProjectExplorerIcon,
   RolodexIcon,
+  RoofingHouseCutoutIcon,
   SolarSunCutoutIcon,
   WavesJetSkiCutoutIcon,
 } from "@/components/showcase/component-icons";
@@ -58,6 +59,7 @@ const projectIconMap: Record<
   angleriq: FishCutoutIcon,
   "studio-sozo": KeyOwnershipCutoutIcon,
   "the-sozo-crm": RolodexIcon,
+  "raymond-hardin-roofing": RoofingHouseCutoutIcon,
   "home-ranger": HvacHomeCutoutIcon,
   "splash-and-dash": WavesJetSkiCutoutIcon,
   "serene-dreams": ApparelTeeCutoutIcon,

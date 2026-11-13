@@ -14,7 +14,7 @@ export const experienceConfig: ExperienceItem[] = [
     summary:
       "Founded an investor-backed software company leading product, architecture, and engineering across web, mobile, and AI.",
     highlights: [
-      "Shipped The Sozo CRM (thesozocrm.com), Studio Sozo, Home Ranger Services, and Splash & Dash to production",
+      "Shipped The Sozo CRM (thesozocrm.com), Studio Sozo, Raymond Hardin Roofing, Home Ranger Services, and Splash & Dash to production",
       "Building AnglerIQ (angleriqapp.com), an AI-powered fishing companion, with React Native and Claude AI",
       "Manage a team of 3 developers — roadmap, sprint planning, code review, and releases",
     ],

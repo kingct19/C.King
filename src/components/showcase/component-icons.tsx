@@ -481,6 +481,19 @@ export function HvacHomeCutoutIcon(props: ComponentIconProps) {
   );
 }
 
+/** Raymond Hardin Roofing: Pitched Gable Roof + Chimney & Shingle Courses cutout icon */
+export function RoofingHouseCutoutIcon(props: ComponentIconProps) {
+  return (
+    <PaperCutIcon {...props} accent="var(--primary)" tilt={-6} silhouette="M7 33 32 12 41 19V11H48V25L57 33 52 38 48 35V52H16V35L12 38Z">
+      <path d="M41 19V11h7v14" fill="var(--cutout-paper)" />
+      <path d="m7 33 25-21 25 21-5 5-20-17-20 17Z" fill="var(--cutout-accent)" />
+      <path d="M23 26h18M19 31h26" stroke="var(--cutout-paper)" strokeWidth="2" />
+      <path d="M26 52V39h12v13" fill="var(--cutout-paper)" />
+      <PrintDots x={18} y={41} />
+    </PaperCutIcon>
+  );
+}
+
 /** Splash & Dash Rentals: Highland Lakes Waves + Jet Ski Wake cutout icon */
 export function WavesJetSkiCutoutIcon(props: ComponentIconProps) {
   return (

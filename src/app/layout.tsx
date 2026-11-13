@@ -66,14 +66,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE.url,
   },
-  icons: {
-    icon: [
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/favicon.ico", sizes: "any" },
-    ],
-    shortcut: "/favicon.png",
-    apple: "/apple-icon",
-  },
   robots: {
     index: true,
     follow: true,

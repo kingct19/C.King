@@ -490,8 +490,8 @@ export const siteConfig: PortfolioConfig = {
       alt: `${SITE.name} — Software Engineer & Founder`,
     },
     twitterCreator: "@chandlerking",
-    icon: "/icon",
-    appleIcon: "/apple-icon",
+    icon: "/icon.png",
+    appleIcon: "/apple-icon.png",
     googleVerification: "",
   },
   personal: {

@@ -48,6 +48,26 @@ export const projectsConfig: Project[] = [
     enabled: true,
   },
   {
+    id: "raymond-hardin-roofing",
+    title: "Raymond Hardin Roofing — East Texas Roofing & Service Platform",
+    description:
+      "Residential and commercial roofing platform for a family-owned East Texas contractor (est. 1995) covering 13 towns across 7 counties with shingle, metal, and torch-down roofing.",
+    image: "/images/projects/raymond-hardin-roofing.webp",
+    imageAlt: "Raymond Hardin Roofing — Top Roofing in Gilmer & East Texas",
+    href: "https://www.raymondhardinroofingco.com",
+    liveUrl: "https://www.raymondhardinroofingco.com",
+    tags: ["Next.js", "TypeScript", "Local SEO", "Tailwind CSS"],
+    metrics: [
+      { icon: "chart", label: "13 East Texas towns" },
+      { icon: "users", label: "Residential & Commercial" },
+    ],
+    year: 2026,
+    status: "new",
+    category: "Web Platform",
+    order: 3,
+    enabled: true,
+  },
+  {
     id: "home-ranger",
     title: "Home Ranger Services — DFW & Austin HVAC Platform",
     description:
@@ -64,7 +84,7 @@ export const projectsConfig: Project[] = [
     year: 2026,
     status: "shipped",
     category: "Web Platform",
-    order: 3,
+    order: 4,
     enabled: true,
   },
   {
@@ -84,7 +104,7 @@ export const projectsConfig: Project[] = [
     year: 2026,
     status: "shipped",
     category: "Booking / Web",
-    order: 4,
+    order: 5,
     enabled: true,
   },
   {
@@ -104,7 +124,7 @@ export const projectsConfig: Project[] = [
     year: 2025,
     status: "shipped",
     category: "SaaS / CRM",
-    order: 5,
+    order: 6,
     enabled: true,
   },
   {
@@ -124,7 +144,7 @@ export const projectsConfig: Project[] = [
     year: 2025,
     status: "shipped",
     category: "E-Commerce",
-    order: 6,
+    order: 7,
     enabled: true,
   },
   {
@@ -144,7 +164,7 @@ export const projectsConfig: Project[] = [
     year: 2025,
     status: "shipped",
     category: "Web / Lead-Gen",
-    order: 7,
+    order: 8,
     enabled: true,
   },
   {
@@ -164,7 +184,7 @@ export const projectsConfig: Project[] = [
     year: 2024,
     status: "shipped",
     category: "School Project",
-    order: 8,
+    order: 9,
     enabled: true,
   },
   {
@@ -184,7 +204,7 @@ export const projectsConfig: Project[] = [
     year: 2024,
     status: "shipped",
     category: "School Project",
-    order: 9,
+    order: 10,
     enabled: true,
   },
 ];
